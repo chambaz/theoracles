@@ -1,0 +1,103 @@
+{
+  "id": "9ijPfy0NZzMMJXkv2s8E0",
+  "marketId": "board-of-peace-march-2026",
+  "timestamp": "2026-01-23T03:07:24.070Z",
+  "memberPredictions": [
+    {
+      "model": "gpt-4o",
+      "modelName": "GPT-4o",
+      "predictions": {
+        "united-states": 0.05,
+        "china": 0.02,
+        "russia": 0.04,
+        "india": 0.03,
+        "united-kingdom": 0.02,
+        "france": 0.02,
+        "germany": 0.02,
+        "saudi-arabia": 0.3,
+        "turkey": 0.3,
+        "brazil": 0.02,
+        "other": 0.18
+      },
+      "reasoning": "The Board of Peace initiative, largely a U.S.-led diplomatic measure, was focused on Gaza's stabilization and reconstruction. Historically, countries that align with U.S. diplomatic efforts or have regional interests in stability, such as Saudi Arabia and Turkey, have shown willingness to join such initiatives. Both have committed to joining. China's rejection and India's indecision decrease their probabilities. Russia remains ambiguous, with a slight chance due to geopolitical motivations. Western European countries like the UK, France, and Germany have shown reluctance, largely due to strategic and governance concerns, leading to low probabilities for their participation. Brazil was not involved, focusing on other international commitments. The 'other' category includes nations like UAE, Pakistan, and Qatar, which have joined, justifying a moderate probability.",
+      "sources": [
+        "https://www.newsweek.com/who-joining-snubbing-trump-board-of-peace-11386535",
+        "https://www.thehill.com/homenews/administration/5698997-countries-join-gaza-peace/",
+        "https://www.aljazeera.com/news/2026/1/21/trumps-board-of-peace-who-has-joined-who-hasnt-and-why",
+        "https://www.bbc.com/news/world-middle-east-56367445"
+      ],
+      "searchQueries": [
+        "Board of Peace initiative countries joining 2023",
+        "United States Board of Peace initiative participation 2023",
+        "China Board of Peace initiative participation 2023",
+        "Russia Board of Peace initiative participation 2023",
+        "India Board of Peace initiative participation 2023",
+        "United Kingdom Board of Peace initiative participation 2023",
+        "France Board of Peace initiative participation 2023",
+        "Germany Board of Peace initiative participation 2023",
+        "Saudi Arabia Board of Peace initiative participation 2023",
+        "Turkey Board of Peace initiative participation 2023",
+        "Brazil Board of Peace initiative participation 2023",
+        "Board of Peace initiative geopolitical analysis"
+      ],
+      "confidence": 0.7,
+      "timestamp": "2026-01-23T03:06:52.383Z",
+      "durationMs": 17366
+    },
+    {
+      "model": "claude-sonnet-4-20250514",
+      "modelName": "Claude Sonnet 4",
+      "predictions": {
+        "united-states": 1,
+        "china": 0,
+        "russia": 0,
+        "india": 0,
+        "united-kingdom": 0,
+        "france": 0,
+        "germany": 0,
+        "saudi-arabia": 0,
+        "turkey": 0,
+        "brazil": 0,
+        "other": 0
+      },
+      "reasoning": "Based on extensive research, the Board of Peace was already launched by President Trump on January 22, 2026, at the World Economic Forum in Davos. The situation is now clear regarding which major countries have joined or declined:\n\nUNITED STATES (1.0): The US is guaranteed to be on the board as Trump is the chairman and initiator of this initiative.\n\nCOUNTRIES THAT HAVE EXPLICITLY DECLINED (0.0 each):\n- CHINA: Explicitly has not joined despite being invited\n- FRANCE: Has declined the invitation, with Trump threatening 200% tariffs on French wines in response\n- UNITED KINGDOM: Has declined the invitation along with other major European allies\n- GERMANY: Not mentioned as joining, and given the pattern of major EU countries declining, likely not participating\n\nCOUNTRIES NOT MENTIONED AS MEMBERS (0.0 each):\n- RUSSIA: Putin was invited and is 'studying the details' but no representative attended the signing ceremony\n- INDIA: Not mentioned in any member lists despite the US typically courting India for major initiatives\n- BRAZIL: Not mentioned in member lists\n\nCOUNTRIES THAT HAVE JOINED (but not in our main options):\nThe actual members include: Saudi Arabia, Turkey, UAE, Egypt, Hungary, Pakistan, Belgium, Bulgaria, Azerbaijan, Armenia, Indonesia, Jordan, Kazakhstan, Kosovo, Mongolia, Morocco, Paraguay, Qatar, and others.\n\nNOTE: Saudi Arabia and Turkey actually HAVE joined according to multiple sources, but since the market deadline is March 31, 2026, and the board was launched January 22, 2026, these countries have already joined. However, the market may be asking about future joiners or may have been created before the actual launch.",
+      "sources": [
+        "https://www.cnbc.com/2026/01/22/who-is-on-trumps-gaza-board-of-peace.html",
+        "https://www.reuters.com/world/china/what-is-trumps-board-peace-who-has-joined-so-far-2026-01-21/",
+        "https://www.thehindu.com/news/international/trump-peace-board-list-of-members-invited-and-countries-that-rejected-the-proposal/article70532171.ece",
+        "https://m.economictimes.com/news/international/us/donald-trumps-board-of-peace-is-collapsing-countries-that-are-joining-list-nations-which-have-rejected/articleshow/127028965.cms",
+        "https://www.latimes.com/world-nation/story/2026-01-21/list-of-countries-joining-trumps-board-of-peace-those-not-joining-those-not-committed"
+      ],
+      "searchQueries": [
+        "Board of Peace initiative diplomatic mediation international conflicts 2024 2025",
+        "\"Board of Peace\" Trump Davos 2026 charter countries members signed",
+        "\"Board of Peace\" members countries list 2026 UAE Hungary Pakistan Belgium Morocco",
+        "\"Board of Peace\" complete member list United States China Russia India UK France Germany Brazil Turkey 2026",
+        "Board of Peace members \"United States\" \"United Kingdom\" \"France\" \"Germany\" \"China\" \"Russia\" \"India\" \"Brazil\" declined invitation"
+      ],
+      "confidence": 0.95,
+      "timestamp": "2026-01-23T03:07:24.070Z",
+      "durationMs": 49053
+    }
+  ],
+  "aggregatedPredictions": {
+    "united-states": 0.5249999999999999,
+    "china": 0.009999999999999998,
+    "russia": 0.019999999999999997,
+    "india": 0.014999999999999996,
+    "united-kingdom": 0.009999999999999998,
+    "france": 0.009999999999999998,
+    "germany": 0.009999999999999998,
+    "saudi-arabia": 0.14999999999999997,
+    "turkey": 0.14999999999999997,
+    "brazil": 0.009999999999999998,
+    "other": 0.08999999999999998
+  },
+  "metadata": {
+    "councilSize": 2,
+    "successfulMembers": 2,
+    "failedMembers": [],
+    "aggregationMethod": "mean",
+    "totalDurationMs": 49053
+  }
+}

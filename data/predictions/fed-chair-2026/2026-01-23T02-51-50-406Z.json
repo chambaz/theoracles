@@ -1,0 +1,95 @@
+{
+  "id": "HJI-_9SyR-M_Z27OLbWhd",
+  "marketId": "fed-chair-2026",
+  "timestamp": "2026-01-23T02:51:50.406Z",
+  "memberPredictions": [
+    {
+      "model": "gpt-4o",
+      "modelName": "GPT-4o",
+      "predictions": {
+        "rick-rieder": 0.6,
+        "kevin-warsh": 0.2,
+        "christopher-waller": 0.1,
+        "kevin-hassett": 0.03,
+        "scott-bessent": 0.02,
+        "judy-shelton": 0.01,
+        "michelle-bowman": 0.02,
+        "other": 0.02
+      },
+      "reasoning": "Rick Rieder has emerged as the frontrunner for the Federal Reserve Chair nomination by Donald Trump, with a high possibility of nomination due to his increasing odds in various prediction markets and significant support as indicated by recent announcements. Kevin Warsh remains a notable contender due to his past consideration and prominence in discussions. Christopher Waller is still considered but less likely compared to Rieder. Kevin Hassett's prospects have diminished significantly following Trump's expressed reluctance. Scott Bessent and Michelle Bowman have been mentioned but lack substantial momentum. Judy Shelton's controversial history makes her a less likely nominee. The 'other' category retains a small probability as political dynamics can change rapidly between now and the resolution date.",
+      "sources": [
+        "https://qz.com/trump-fed-reserve-pick-davos",
+        "https://www.cnbc.com/2026/01/22/rieder-odds-rising-for-fed-chair-after-trump-calls-blackrock-executive-very-impressive.html",
+        "https://www.newsweek.com/donald-trump-fed-chair-jerome-powell-kevin-warsh-11403652",
+        "https://www.politico.com/news/2026/01/16/trump-kevin-hassett-federal-reserve-chair-00733312",
+        "https://www.bloomberg.com/news/articles/2026-01-20/bessent-says-fed-chair-pick-could-come-as-soon-as-next-week"
+      ],
+      "searchQueries": [
+        "Trump Federal Reserve Chair 2026 nomination news",
+        "Kevin Warsh Federal Reserve Chair Trump",
+        "Rick Rieder Federal Reserve Chair Trump",
+        "Christopher Waller Federal Reserve Chair Trump",
+        "Kevin Hassett Federal Reserve Chair Trump",
+        "Scott Bessent Federal Reserve Chair Trump",
+        "Judy Shelton Federal Reserve Chair Trump",
+        "Michelle Bowman Federal Reserve Chair Trump"
+      ],
+      "confidence": 0.8,
+      "timestamp": "2026-01-23T02:51:20.683Z",
+      "durationMs": 24302
+    },
+    {
+      "model": "claude-sonnet-4-20250514",
+      "modelName": "Claude Sonnet 4",
+      "predictions": {
+        "kevin-warsh": 0.45,
+        "rick-rieder": 0.25,
+        "christopher-waller": 0.15,
+        "kevin-hassett": 0.05,
+        "scott-bessent": 0.01,
+        "judy-shelton": 0.02,
+        "michelle-bowman": 0.03,
+        "other": 0.04
+      },
+      "reasoning": "Kevin Warsh is the clear frontrunner based on multiple sources indicating Trump's preference for him after cooling on Kevin Hassett. Warsh was considered for the role during Trump's first term and aligns with Trump's views on monetary policy. Rick Rieder has gained significant traction after Trump's praise, with prediction markets showing his odds doubling to 33%. Christopher Waller had a strong interview emphasizing Fed independence, which Trump seemed to appreciate. Hassett's chances have diminished significantly after Trump indicated reluctance to nominate him, preferring to keep him at the White House. Bessent has explicitly removed himself from consideration as Treasury Secretary. Bowman's new role as Vice Chair for Supervision may make her less likely for the top job. Shelton remains controversial due to her previous Senate rejection. The 'other' category accounts for potential surprise candidates not currently being discussed.",
+      "sources": [
+        "https://www.businessinsider.com/trump-fed-shortlist-jerome-powell-replacement-2025-11",
+        "https://fortune.com/2026/01/18/blackrock-rick-rieder-bid-fed-chair-trump-jerome-powell-hassett/",
+        "https://www.cnbc.com/2025/12/19/waller-had-a-strong-interview-for-fed-chair-with-trump.html",
+        "https://www.cnbc.com/2025/08/05/trump-says-treasury-secretary-bessent-does-not-want-to-be-fed-chair-but-4-others-in-running.html",
+        "https://mlq.ai/prediction/news/trumps-fed-chair-nomination-odds-warsh-leads-at-60-amid-political-hurdles-202601201130/"
+      ],
+      "searchQueries": [
+        "Trump Fed Chair nomination 2024 candidates Powell replacement May 2026",
+        "Kevin Warsh Fed Chair Trump 2024 nomination front runner candidate",
+        "Scott Bessent Fed Chair Trump nomination candidate Treasury Secretary 2024",
+        "Rick Rieder BlackRock Fed Chair candidate Trump nomination 2025",
+        "Christopher Waller Fed Governor Trump interview Fed Chair nomination 2025",
+        "Judy Shelton Fed nomination Trump 2025 previous rejection Senate",
+        "Michelle Bowman Fed Vice Chair Supervision Trump nomination Fed Chair candidate 2025",
+        "Kevin Hassett Fed Chair Trump nomination 2025 current frontrunner Treasury",
+        "\"Fed Chair nomination\" Trump 2025 latest news January prediction market odds"
+      ],
+      "confidence": 0.75,
+      "timestamp": "2026-01-23T02:51:50.405Z",
+      "durationMs": 54010
+    }
+  ],
+  "aggregatedPredictions": {
+    "rick-rieder": 0.425,
+    "kevin-warsh": 0.325,
+    "christopher-waller": 0.125,
+    "kevin-hassett": 0.04,
+    "scott-bessent": 0.015,
+    "judy-shelton": 0.015,
+    "michelle-bowman": 0.025,
+    "other": 0.03
+  },
+  "metadata": {
+    "councilSize": 2,
+    "successfulMembers": 2,
+    "failedMembers": [],
+    "aggregationMethod": "mean",
+    "totalDurationMs": 54025
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "id": "eV6-zlQkV8s4iW3SVBOtS",
+  "marketId": "btc-200k-2026",
+  "timestamp": "2026-01-23T03:06:35.015Z",
+  "memberPredictions": [
+    {
+      "model": "gpt-4o",
+      "modelName": "GPT-4o",
+      "predictions": {
+        "yes": 0.4,
+        "no": 0.6
+      },
+      "reasoning": "The consensus from multiple forecasts suggests that Bitcoin is expected to trade within a wide range by 2026, with projections extending from around $120,000 to $250,000. The possibility of Bitcoin reaching $200,000 is supported by several key factors, including increased institutional adoption, potential market catalysts such as regulatory clarity, and economic conditions that could favor Bitcoin as a macroeconomic hedge.\n\nNotable optimistic views include Binance founder Changpeng Zhao's belief that reaching $200,000 is plausible due to expected market growth and institutional investment. Reports from CNBC and other financial publications see a bullish trend, with forecasts from institutions like Nexo and Maple Finance predicting Bitcoin prices close to or exceeding $200,000. Despite this optimism, there remains significant downside risk, highlighted by more conservative analysts who caution about volatility and potential economic downturns affecting asset flows into cryptocurrencies.\n\nThe mixed predictions reflect the inherent uncertainty in the cryptocurrency market, shaped by volatile regulatory environments and shifting economic indicators. While the path to $200,000 exists, it is not predominantly assured given current dynamics, thus leading to a probability assignment favoring the scenario where Bitcoin does not achieve this mark by the end of 2026.\n\nSources relied upon include CNBC's annual roundup of bitcoin predictions, insights from CNBC and Yahoo Finance about Binance CEO's bullish outlook, and market analysis from major financial publications and crypto experts.",
+      "sources": [
+        "https://www.cnbc.com/2026/01/08/bitcoin-btc-price-predictions-for-2026.html",
+        "https://www.financemagnates.com/trending/bitcoin-price-prediction-2026-can-btc-hit-225k-or-will-fall-to-75k/",
+        "https://intellectia.ai/news/crypto/binance-founder-predicts-bitcoin-to-reach-200k-analyst-sees-240k-by-2026",
+        "https://www.forbes.com/sites/digital-assets/2026/01/02/5-trends-crypto-investors-cant-ignore-in-2026/",
+        "https://money.com/crypto-bitcoin-predictions-2026/"
+      ],
+      "searchQueries": [
+        "Bitcoin price forecast 2026",
+        "Bitcoin reaching $200,000 analysis",
+        "Cryptocurrency market trends 2026",
+        "Bitcoin expert opinions 2026"
+      ],
+      "confidence": 0.7,
+      "timestamp": "2026-01-23T03:05:35.701Z",
+      "durationMs": 15920
+    },
+    {
+      "model": "claude-sonnet-4-20250514",
+      "modelName": "Claude Sonnet 4",
+      "predictions": {
+        "yes": 0.35,
+        "no": 0.65
+      },
+      "reasoning": "My analysis reveals mixed signals for Bitcoin reaching $200,000 in 2026. BULLISH FACTORS: Multiple expert predictions support this target - Binance founder CZ calls it 'obvious,' crypto analyst Rekt Fencer forecasts $200K-$240K by end of 2026, and institutional forecasts from major firms like Nexo target $200K upper range. Institutional adoption is accelerating dramatically, with ETFs controlling increasing supply and projected institutional inflows of $427B by end of 2026 representing 20% of total supply. The 2024 halving cycle historically suggests peak periods 9-18 months post-halving, putting potential peaks around late 2025 to mid-2026. Regulatory clarity in the US is improving with potential CLARITY Act passage and stablecoin legislation. BEARISH FACTORS: Current technical resistance exists around $90K-$95K levels with Bitcoin struggling below 100-day EMA at $99,500. The traditional 4-year cycle pattern may be breaking due to ETF/institutional flows changing market dynamics. Wide expert prediction ranges ($75K-$225K) show significant uncertainty. Macro risks including inflation concerns, interest rate uncertainty, and competition from AI stocks/gold for capital allocation. Bitcoin's 2025 performance has been disappointing to many, with lower volatility pushing capital elsewhere. The 30-month post-halving historical pattern suggests potential cycle completion around October 2026, which could limit sustained highs. PROBABILITY ASSESSMENT: While the $200K target is within the range of serious expert predictions and institutional adoption creates strong tailwinds, the combination of technical resistance, changing market dynamics, and macro uncertainties creates significant barriers. The target requires roughly 2x appreciation from current ~$95K levels, which is achievable but not certain given the mixed signals.",
+      "sources": [
+        "https://money.com/crypto-bitcoin-predictions-2026/",
+        "https://intellectia.ai/news/crypto/binance-founder-predicts-bitcoin-to-reach-200k-analyst-sees-240k-by-2026",
+        "https://www.cnbc.com/2026/01/08/bitcoin-btc-price-predictions-for-2026.html",
+        "https://www.financemagnates.com/trending/bitcoin-price-prediction-2026-can-btc-hit-225k-or-will-fall-to-75k/",
+        "https://datos-insights.com/blog/bitcoin-etf-institutional-adoption/",
+        "https://www.binance.com/en/square/post/23134182215850"
+      ],
+      "searchQueries": [
+        "Bitcoin price prediction 2026 $200000 expert analysis",
+        "Bitcoin current price 2024 2025 market trends institutional adoption",
+        "Bitcoin halving cycle 2024 2026 historical price patterns",
+        "Bitcoin regulatory environment 2025 2026 ETF institutional adoption barriers",
+        "Bitcoin price volatility risks 2026 macro economic factors inflation",
+        "Bitcoin technical analysis 2026 resistance levels supply and demand"
+      ],
+      "confidence": 0.7,
+      "timestamp": "2026-01-23T03:06:35.015Z",
+      "durationMs": 75234
+    }
+  ],
+  "aggregatedPredictions": {
+    "yes": 0.375,
+    "no": 0.625
+  },
+  "metadata": {
+    "councilSize": 2,
+    "successfulMembers": 2,
+    "failedMembers": [],
+    "aggregationMethod": "mean",
+    "totalDurationMs": 75234
+  }
+}

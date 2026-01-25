@@ -6,12 +6,20 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "council": "tsx --tsconfig tsconfig.scripts.json scripts/run-council.ts",
+    "seed": "tsx --tsconfig tsconfig.scripts.json scripts/seed.ts"
   },
   "dependencies": {
+    "@ai-sdk/anthropic": "^3.0.23",
+    "@ai-sdk/openai": "^3.0.18",
+    "ai": "^6.0.48",
+    "dotenv": "^17.2.3",
+    "nanoid": "^5.1.6",
     "next": "16.1.4",
     "react": "19.2.3",
-    "react-dom": "19.2.3"
+    "react-dom": "19.2.3",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
@@ -21,6 +29,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.1.4",
     "tailwindcss": "^4",
+    "tsx": "^4.21.0",
     "typescript": "^5"
   }
 }
