@@ -1,4 +1,6 @@
-import { saveMarkets } from "../src/lib/storage/markets";
+import "dotenv/config";
+import { db } from "../src/db";
+import { markets } from "../src/db/schema";
 import type { Market } from "../src/types";
 
 const sampleMarkets: Market[] = [
@@ -58,7 +60,27 @@ const sampleMarkets: Market[] = [
 
 async function main() {
   console.log("Seeding markets...");
-  await saveMarkets(sampleMarkets);
+
+  for (const market of sampleMarkets) {
+    await db
+      .insert(markets)
+      .values({
+        id: market.id,
+        title: market.title,
+        description: market.description,
+        category: market.category,
+        options: market.options,
+        resolutionDate: market.resolutionDate
+          ? new Date(market.resolutionDate)
+          : null,
+        source: market.source ?? null,
+        status: market.status,
+        createdAt: new Date(market.createdAt),
+        updatedAt: new Date(market.updatedAt),
+      })
+      .onConflictDoNothing();
+  }
+
   console.log(`Created ${sampleMarkets.length} markets:`);
   for (const market of sampleMarkets) {
     console.log(`  - ${market.id}: ${market.title}`);
