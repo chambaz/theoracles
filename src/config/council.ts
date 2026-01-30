@@ -2,7 +2,7 @@ export interface CouncilMember {
   id: string;
   name: string;
   model: string;
-  provider: "openai" | "anthropic";
+  provider: "openai" | "anthropic" | "xai";
   enabled: boolean;
 }
 
@@ -19,6 +19,13 @@ export const COUNCIL_MEMBERS: CouncilMember[] = [
     name: "Claude Sonnet 4",
     model: "claude-sonnet-4-20250514",
     provider: "anthropic",
+    enabled: true,
+  },
+  {
+    id: "grok-3",
+    name: "Grok 3",
+    model: "grok-3",
+    provider: "xai",
     enabled: true,
   },
 ];
