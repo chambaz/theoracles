@@ -52,7 +52,7 @@ export default async function HomePage() {
           </p>
         </div>
       ) : (
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
           {marketsWithPredictions.map(({ market, prediction }) => (
             <MarketCard
               key={market.id}
