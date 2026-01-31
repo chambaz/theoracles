@@ -14,7 +14,7 @@ async function getMarketsWithPredictions(): Promise<
     markets.map(async (market) => {
       const prediction = await getLatestPrediction(market.id);
       return { market, prediction };
-    })
+    }),
   );
 
   // Sort: active markets first, then by most recent prediction
@@ -37,19 +37,11 @@ export default async function HomePage() {
 
   return (
     <div>
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">Markets</h1>
-        <p className="text-muted-foreground">
-          AI council predictions on current events and future outcomes
-        </p>
-      </div>
-
       {marketsWithPredictions.length === 0 ? (
         <div className="text-center py-12 text-muted-foreground">
           <p>No markets yet.</p>
           <p className="text-sm mt-2">
-            Run{" "}
-            <code className="bg-muted px-2 py-1 rounded">npm run seed</code>{" "}
+            Run <code className="bg-muted px-2 py-1 rounded">npm run seed</code>{" "}
             to create sample markets.
           </p>
         </div>
