@@ -4,7 +4,7 @@ import { markets } from "../src/db/schema";
 import type { Market } from "../src/types";
 
 const sampleMarkets: Market[] = [
-  // ── Existing markets ──────────────────────────────────────────────
+  // ── Politics ────────────────────────────────────────────────────────
   {
     id: "fed-chair-2026",
     title: "Who will Trump nominate as Fed Chair?",
@@ -28,95 +28,6 @@ const sampleMarkets: Market[] = [
     updatedAt: new Date().toISOString(),
   },
   {
-    id: "btc-200k-2026",
-    title: "Will Bitcoin reach $200,000 in 2026?",
-    description:
-      "This market resolves to YES if Bitcoin (BTC) reaches a price of $200,000 USD or higher on any major exchange (Coinbase, Binance, Kraken) at any point during 2026.",
-    category: "Crypto",
-    options: [
-      { id: "yes", name: "Yes" },
-      { id: "no", name: "No" },
-    ],
-    resolutionDate: "2026-12-31",
-    status: "active",
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  },
-  {
-    id: "ai-video-oscars-2027",
-    title: "Will an AI-generated film win an Oscar by 2027?",
-    description:
-      "This market resolves to YES if a film that is primarily AI-generated (including AI-generated visuals, script, or direction) wins any Academy Award at the 2027 Oscars ceremony or earlier.",
-    category: "Technology",
-    options: [
-      { id: "yes", name: "Yes" },
-      { id: "no", name: "No" },
-    ],
-    resolutionDate: "2027-03-01",
-    status: "active",
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  },
-
-  // ── New Polymarket markets ────────────────────────────────────────
-
-  // Geopolitics
-  {
-    id: "us-strikes-iran-2026",
-    title: "US strikes Iran by June 30, 2026?",
-    description:
-      "This market resolves to YES if the US initiates a drone, missile, or air strike on Iranian soil or any official Iranian embassy or consulate by June 30, 2026. Intercepted missiles or ground operations do not qualify.",
-    category: "Geopolitics",
-    options: [
-      { id: "yes", name: "Yes" },
-      { id: "no", name: "No" },
-    ],
-    resolutionDate: "2026-06-30",
-    source: "https://polymarket.com/event/us-strikes-iran-by",
-    status: "active",
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  },
-  {
-    id: "khamenei-out-feb-2026",
-    title: "Khamenei out as Supreme Leader of Iran by February 28?",
-    description:
-      "This market resolves to YES if Iran's Supreme Leader Ali Khamenei is removed from power for any length of time by February 28, 2026. Removal includes resignation, detention, or otherwise losing his position.",
-    category: "Geopolitics",
-    options: [
-      { id: "yes", name: "Yes" },
-      { id: "no", name: "No" },
-    ],
-    resolutionDate: "2026-02-28",
-    source:
-      "https://polymarket.com/event/khamenei-out-as-supreme-leader-of-iran-by-february-28",
-    status: "active",
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  },
-
-  // Finance
-  {
-    id: "fed-decision-march-2026",
-    title: "Fed decision in March 2026",
-    description:
-      "This market resolves to the change in the upper bound of the target federal funds rate after the FOMC meeting scheduled for March 17-18, 2026. If no statement is released by the end date of the next scheduled meeting, resolves to No change.",
-    category: "Finance",
-    options: [
-      { id: "50-bps-decrease", name: "50+ bps decrease" },
-      { id: "25-bps-decrease", name: "25 bps decrease" },
-      { id: "no-change", name: "No change" },
-      { id: "25-bps-increase", name: "25+ bps increase" },
-    ],
-    resolutionDate: "2026-03-18",
-    source: "https://polymarket.com/event/fed-decision-in-march-885",
-    status: "active",
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  },
-
-  // Politics
-  {
     id: "first-leave-trump-cabinet",
     title: "Who will be the first to leave the Trump Cabinet?",
     description:
@@ -139,8 +50,133 @@ const sampleMarkets: Market[] = [
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   },
+  {
+    id: "us-gov-shutdown-feb-2026",
+    title: "US government shutdown by February 2026?",
+    description:
+      "This market resolves to YES if a lapse in federal government funding (government shutdown) occurs at any point before March 1, 2026. A shutdown is defined as the expiration of funding authority resulting in a lapse in appropriations.",
+    category: "Politics",
+    options: [
+      { id: "yes", name: "Yes" },
+      { id: "no", name: "No" },
+    ],
+    resolutionDate: "2026-03-01",
+    source:
+      "https://polymarket.com/event/will-there-be-another-us-government-shutdown-by-january-31",
+    status: "active",
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  },
 
-  // Technology
+  // ── Geopolitics ─────────────────────────────────────────────────────
+  {
+    id: "us-strikes-iran-2026",
+    title: "US strikes Iran by June 30, 2026?",
+    description:
+      "This market resolves to YES if the US initiates a drone, missile, or air strike on Iranian soil or any official Iranian embassy or consulate by June 30, 2026. Intercepted missiles or ground operations do not qualify.",
+    category: "Geopolitics",
+    options: [
+      { id: "yes", name: "Yes" },
+      { id: "no", name: "No" },
+    ],
+    resolutionDate: "2026-06-30",
+    source: "https://polymarket.com/event/us-strikes-iran-by",
+    status: "active",
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  },
+  {
+    id: "russia-ukraine-ceasefire-2026",
+    title: "Russia x Ukraine ceasefire by end of 2026?",
+    description:
+      "This market resolves to YES if Russia and Ukraine agree to and implement a bilateral ceasefire of any duration by December 31, 2026. A ceasefire must be officially announced by both governments or confirmed by a major international organization.",
+    category: "Geopolitics",
+    options: [
+      { id: "yes", name: "Yes" },
+      { id: "no", name: "No" },
+    ],
+    resolutionDate: "2026-12-31",
+    source: "https://polymarket.com/event/russia-x-ukraine-ceasefire-before-2027",
+    status: "active",
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  },
+  {
+    id: "us-acquires-greenland-2026",
+    title: "Will the US acquire part of Greenland in 2026?",
+    description:
+      "This market resolves to YES if the United States acquires sovereignty, ownership, or administrative control over any part of Greenland by December 31, 2026. This includes purchase, lease, or treaty-based transfer.",
+    category: "Geopolitics",
+    options: [
+      { id: "yes", name: "Yes" },
+      { id: "no", name: "No" },
+    ],
+    resolutionDate: "2026-12-31",
+    source:
+      "https://polymarket.com/event/will-the-us-acquire-any-part-of-greenland-in-2026",
+    status: "active",
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  },
+
+  // ── Finance ─────────────────────────────────────────────────────────
+  {
+    id: "fed-decision-march-2026",
+    title: "Fed decision in March 2026",
+    description:
+      "This market resolves to the change in the upper bound of the target federal funds rate after the FOMC meeting scheduled for March 17-18, 2026. If no statement is released by the end date of the next scheduled meeting, resolves to No change.",
+    category: "Finance",
+    options: [
+      { id: "50-bps-decrease", name: "50+ bps decrease" },
+      { id: "25-bps-decrease", name: "25 bps decrease" },
+      { id: "no-change", name: "No change" },
+      { id: "25-bps-increase", name: "25+ bps increase" },
+    ],
+    resolutionDate: "2026-03-18",
+    source: "https://polymarket.com/event/fed-decision-in-march-885",
+    status: "active",
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  },
+  {
+    id: "largest-company-june-2026",
+    title: "Largest company by market cap end of June 2026?",
+    description:
+      "This market resolves to the publicly traded company with the highest market capitalization at market close on the last trading day of June 2026, based on data from Bloomberg or equivalent.",
+    category: "Finance",
+    options: [
+      { id: "nvidia", name: "NVIDIA" },
+      { id: "apple", name: "Apple" },
+      { id: "microsoft", name: "Microsoft" },
+      { id: "amazon", name: "Amazon" },
+      { id: "alphabet", name: "Alphabet" },
+      { id: "saudi-aramco", name: "Saudi Aramco" },
+      { id: "other", name: "Other" },
+    ],
+    resolutionDate: "2026-06-30",
+    source: "https://polymarket.com/event/largest-company-end-of-june-712",
+    status: "active",
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  },
+
+  // ── Technology ──────────────────────────────────────────────────────
+  {
+    id: "openai-ipo-2026",
+    title: "Will OpenAI IPO by December 31, 2026?",
+    description:
+      "This market resolves to YES if OpenAI completes an initial public offering (IPO) and begins trading on a public stock exchange by December 31, 2026.",
+    category: "Technology",
+    options: [
+      { id: "yes", name: "Yes" },
+      { id: "no", name: "No" },
+    ],
+    resolutionDate: "2026-12-31",
+    source: "https://polymarket.com/event/openai-ipo-by",
+    status: "active",
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  },
   {
     id: "openai-ipo-market-cap",
     title: "OpenAI IPO Closing Market Cap",
@@ -180,22 +216,6 @@ const sampleMarkets: Market[] = [
     updatedAt: new Date().toISOString(),
   },
   {
-    id: "openai-ipo-2026",
-    title: "Will OpenAI IPO by December 31, 2026?",
-    description:
-      "This market resolves to YES if OpenAI completes an initial public offering (IPO) and begins trading on a public stock exchange by December 31, 2026.",
-    category: "Technology",
-    options: [
-      { id: "yes", name: "Yes" },
-      { id: "no", name: "No" },
-    ],
-    resolutionDate: "2026-12-31",
-    source: "https://polymarket.com/event/openai-ipo-by",
-    status: "active",
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  },
-  {
     id: "companies-acquired-2027",
     title: "Which companies will be acquired before 2027?",
     description:
@@ -219,8 +239,63 @@ const sampleMarkets: Market[] = [
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   },
+  {
+    id: "anthropic-500b-valuation-2026",
+    title: "Anthropic reaches $500B+ valuation in 2026?",
+    description:
+      "This market resolves to YES if Anthropic achieves a valuation of $500 billion or higher through a funding round, secondary sale, or public listing by December 31, 2026. Valuation must be reported by a credible source such as Bloomberg, Reuters, or the Financial Times.",
+    category: "Technology",
+    options: [
+      { id: "yes", name: "Yes" },
+      { id: "no", name: "No" },
+    ],
+    resolutionDate: "2026-12-31",
+    source: "https://polymarket.com/event/anthropic-500b-valuation-in-2026",
+    status: "active",
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  },
 
-  // Entertainment
+  // ── AI ──────────────────────────────────────────────────────────────
+  {
+    id: "ai-video-oscars-2027",
+    title: "Will an AI-generated film win an Oscar by 2027?",
+    description:
+      "This market resolves to YES if a film that is primarily AI-generated (including AI-generated visuals, script, or direction) wins any Academy Award at the 2027 Oscars ceremony or earlier.",
+    category: "AI",
+    options: [
+      { id: "yes", name: "Yes" },
+      { id: "no", name: "No" },
+    ],
+    resolutionDate: "2027-03-01",
+    status: "active",
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  },
+  {
+    id: "best-ai-model-march-2026",
+    title: "Which company has the best AI model end of March?",
+    description:
+      "This market resolves to the company whose AI model scores highest on the Chatbot Arena overall leaderboard (lmarena.ai) at market close on March 31, 2026. Only the default leaderboard ranking (without style control) is used.",
+    category: "AI",
+    options: [
+      { id: "google", name: "Google" },
+      { id: "openai", name: "OpenAI" },
+      { id: "anthropic", name: "Anthropic" },
+      { id: "xai", name: "xAI" },
+      { id: "meta", name: "Meta" },
+      { id: "deepseek", name: "DeepSeek" },
+      { id: "other", name: "Other" },
+    ],
+    resolutionDate: "2026-03-31",
+    source:
+      "https://polymarket.com/event/which-company-has-the-best-ai-model-end-of-march-751",
+    status: "active",
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  },
+
+  // ── Entertainment ───────────────────────────────────────────────────
   {
     id: "oscars-best-picture-2026",
     title: "Oscars 2026: Best Picture Winner",
@@ -269,7 +344,7 @@ const sampleMarkets: Market[] = [
     updatedAt: new Date().toISOString(),
   },
 
-  // Crypto
+  // ── Crypto ──────────────────────────────────────────────────────────
   {
     id: "btc-price-2026",
     title: "What price will Bitcoin hit in 2026?",
@@ -324,7 +399,9 @@ async function main() {
     }
   }
 
-  console.log(`\nInserted ${inserted} new markets (${sampleMarkets.length - inserted} skipped).`);
+  console.log(
+    `\nInserted ${inserted} new markets (${sampleMarkets.length - inserted} skipped).`,
+  );
   console.log("Done!");
 }
 

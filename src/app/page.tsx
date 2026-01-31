@@ -17,18 +17,37 @@ async function getMarketsWithPredictions(): Promise<
     }),
   );
 
-  // Sort: active markets first, then by most recent prediction
+  // Popularity order (based on Polymarket volume)
+  const popularityOrder = [
+    "fed-chair-2026",
+    "us-strikes-iran-2026",
+    "us-gov-shutdown-feb-2026",
+    "fed-decision-march-2026",
+    "oscars-best-picture-2026",
+    "tesla-fsd-june-2026",
+    "btc-price-2026",
+    "companies-acquired-2027",
+    "russia-ukraine-ceasefire-2026",
+    "us-acquires-greenland-2026",
+    "first-leave-trump-cabinet",
+    "best-ai-model-march-2026",
+    "largest-company-june-2026",
+    "openai-ipo-market-cap",
+    "openai-ipo-2026",
+    "grammys-song-of-year-2026",
+    "anthropic-500b-valuation-2026",
+    "ai-video-oscars-2027",
+  ];
+
   return results.sort((a, b) => {
+    // Active markets first
     if (a.market.status !== b.market.status) {
       return a.market.status === "active" ? -1 : 1;
     }
-    if (a.prediction && b.prediction) {
-      return (
-        new Date(b.prediction.timestamp).getTime() -
-        new Date(a.prediction.timestamp).getTime()
-      );
-    }
-    return a.prediction ? -1 : 1;
+    // Then by popularity
+    const aIdx = popularityOrder.indexOf(a.market.id);
+    const bIdx = popularityOrder.indexOf(b.market.id);
+    return (aIdx === -1 ? 999 : aIdx) - (bIdx === -1 ? 999 : bIdx);
   });
 }
 
