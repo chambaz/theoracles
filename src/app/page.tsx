@@ -39,16 +39,18 @@ export default async function HomePage() {
     <div>
       <div className="mb-8">
         <h1 className="text-3xl font-bold mb-2">Markets</h1>
-        <p className="text-[var(--muted)]">
+        <p className="text-muted-foreground">
           AI council predictions on current events and future outcomes
         </p>
       </div>
 
       {marketsWithPredictions.length === 0 ? (
-        <div className="text-center py-12 text-[var(--muted)]">
+        <div className="text-center py-12 text-muted-foreground">
           <p>No markets yet.</p>
           <p className="text-sm mt-2">
-            Run <code className="bg-[var(--card-bg)] px-2 py-1 rounded">npm run seed</code> to create sample markets.
+            Run{" "}
+            <code className="bg-muted px-2 py-1 rounded">npm run seed</code>{" "}
+            to create sample markets.
           </p>
         </div>
       ) : (

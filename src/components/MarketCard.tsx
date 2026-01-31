@@ -1,6 +1,8 @@
 import Link from "next/link";
 import type { Market, CouncilPrediction } from "@/types";
 import { PredictionBar } from "./PredictionBar";
+import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 
 interface MarketCardProps {
   market: Market;
@@ -8,7 +10,6 @@ interface MarketCardProps {
 }
 
 export function MarketCard({ market, prediction }: MarketCardProps) {
-  // Sort predictions by probability descending
   const sortedPredictions = prediction
     ? Object.entries(prediction.aggregatedPredictions)
         .sort(([, a], [, b]) => b - a)
@@ -30,15 +31,19 @@ export function MarketCard({ market, prediction }: MarketCardProps) {
 
   return (
     <Link href={`/market/${market.id}`} className="h-full">
-      <div className="h-full flex flex-col bg-[var(--card-bg)] border border-[var(--card-border)] rounded-lg p-5 hover:border-[var(--muted)] transition-colors cursor-pointer">
-        <div className="flex items-start justify-between gap-4 mb-4">
-          <h2 className="font-semibold text-lg leading-tight">{market.title}</h2>
-          <span className="text-xs px-2 py-1 bg-[var(--card-border)] rounded-full text-[var(--muted)] whitespace-nowrap">
-            {market.category}
-          </span>
-        </div>
+      <Card className="h-full flex flex-col hover:border-muted-foreground/30 transition-colors cursor-pointer">
+        <CardHeader className="pb-3">
+          <div className="flex items-start justify-between gap-3">
+            <h2 className="font-semibold text-lg leading-tight">
+              {market.title}
+            </h2>
+            <Badge variant="secondary" className="shrink-0">
+              {market.category}
+            </Badge>
+          </div>
+        </CardHeader>
 
-        <div className="flex-1">
+        <CardContent className="flex-1 pb-3">
           {sortedPredictions.length > 0 ? (
             <div className="space-y-1">
               {sortedPredictions.map(([optionId, probability], index) => (
@@ -50,27 +55,30 @@ export function MarketCard({ market, prediction }: MarketCardProps) {
                 />
               ))}
               {market.options.length > 3 && (
-                <p className="text-xs text-[var(--muted)] mt-2">
+                <p className="text-xs text-muted-foreground mt-2">
                   +{market.options.length - 3} more options
                 </p>
               )}
             </div>
           ) : (
-            <p className="text-sm text-[var(--muted)] italic">
+            <p className="text-sm text-muted-foreground italic">
               No predictions yet
             </p>
           )}
-        </div>
+        </CardContent>
 
-        <div className="mt-4 pt-3 border-t border-[var(--card-border)] flex items-center justify-between text-xs text-[var(--muted)]">
+        <CardFooter className="border-t pt-3 flex items-center justify-between text-xs text-muted-foreground">
           {market.resolutionDate && (
-            <span>Resolves {new Date(market.resolutionDate).toLocaleDateString()}</span>
+            <span>
+              Resolves{" "}
+              {new Date(market.resolutionDate).toLocaleDateString()}
+            </span>
           )}
           {prediction && (
             <span>Updated {formatDate(prediction.timestamp)}</span>
           )}
-        </div>
-      </div>
+        </CardFooter>
+      </Card>
     </Link>
   );
 }

@@ -14,8 +14,9 @@ export function CouncilBreakdown({
     <div>
       <div className="flex items-center justify-between mb-4">
         <h2 className="text-lg font-semibold">Council Breakdown</h2>
-        <div className="text-sm text-[var(--muted)]">
-          {prediction.metadata.successfulMembers}/{prediction.metadata.councilSize} members
+        <div className="text-sm text-muted-foreground">
+          {prediction.metadata.successfulMembers}/
+          {prediction.metadata.councilSize} members
         </div>
       </div>
 
@@ -30,7 +31,7 @@ export function CouncilBreakdown({
       </div>
 
       {prediction.metadata.failedMembers.length > 0 && (
-        <p className="text-sm text-[var(--accent-red)] mt-4">
+        <p className="text-sm text-destructive mt-4">
           Failed: {prediction.metadata.failedMembers.join(", ")}
         </p>
       )}

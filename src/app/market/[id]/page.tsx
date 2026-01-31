@@ -3,6 +3,9 @@ import Link from "next/link";
 import { getMarket } from "@/lib/storage/markets";
 import { getLatestPrediction } from "@/lib/storage/predictions";
 import { PredictionBar, CouncilBreakdown } from "@/components";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 
 export const dynamic = "force-dynamic";
 
@@ -20,7 +23,6 @@ export default async function MarketPage({ params }: PageProps) {
 
   const prediction = await getLatestPrediction(id);
 
-  // Sort predictions by probability descending
   const sortedPredictions = prediction
     ? Object.entries(prediction.aggregatedPredictions).sort(
         ([, a], [, b]) => b - a
@@ -44,22 +46,19 @@ export default async function MarketPage({ params }: PageProps) {
 
   return (
     <div>
-      <Link
-        href="/"
-        className="inline-flex items-center gap-2 text-sm text-[var(--muted)] hover:text-[var(--foreground)] mb-6"
-      >
-        <span>&larr;</span> Back to markets
-      </Link>
+      <Button variant="ghost" size="sm" asChild className="mb-6">
+        <Link href="/">
+          <span>&larr;</span> Back to markets
+        </Link>
+      </Button>
 
       <div className="mb-8">
         <div className="flex items-start justify-between gap-4 mb-2">
           <h1 className="text-2xl font-bold">{market.title}</h1>
-          <span className="text-xs px-2 py-1 bg-[var(--card-bg)] border border-[var(--card-border)] rounded-full text-[var(--muted)]">
-            {market.category}
-          </span>
+          <Badge variant="secondary">{market.category}</Badge>
         </div>
-        <p className="text-[var(--muted)] mb-4">{market.description}</p>
-        <div className="flex flex-wrap gap-4 text-sm text-[var(--muted)]">
+        <p className="text-muted-foreground mb-4">{market.description}</p>
+        <div className="flex flex-wrap gap-4 text-sm text-muted-foreground items-center">
           {market.resolutionDate && (
             <span>
               Resolves:{" "}
@@ -75,70 +74,79 @@ export default async function MarketPage({ params }: PageProps) {
               href={market.source}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[var(--accent)] hover:underline"
+              className="text-primary hover:underline"
             >
               Source
             </a>
           )}
-          <span
-            className={`px-2 py-0.5 rounded text-xs ${
+          <Badge
+            variant={
               market.status === "active"
-                ? "bg-green-500/20 text-green-400"
+                ? "default"
                 : market.status === "resolved"
-                ? "bg-blue-500/20 text-blue-400"
-                : "bg-yellow-500/20 text-yellow-400"
-            }`}
+                  ? "secondary"
+                  : "outline"
+            }
           >
             {market.status}
-          </span>
+          </Badge>
         </div>
       </div>
 
       {prediction ? (
         <>
-          <div className="bg-[var(--card-bg)] border border-[var(--card-border)] rounded-lg p-6 mb-8">
-            <div className="flex items-center justify-between mb-4">
-              <h2 className="text-lg font-semibold">Council Prediction</h2>
-              <span className="text-sm text-[var(--muted)]">
-                {formatDate(prediction.timestamp)}
-              </span>
-            </div>
+          <Card className="mb-8">
+            <CardHeader>
+              <div className="flex items-center justify-between">
+                <h2 className="text-lg font-semibold">Council Prediction</h2>
+                <span className="text-sm text-muted-foreground">
+                  {formatDate(prediction.timestamp)}
+                </span>
+              </div>
+            </CardHeader>
 
-            <div className="space-y-2">
-              {sortedPredictions.map(([optionId, probability], index) => (
-                <PredictionBar
-                  key={optionId}
-                  name={getOptionName(optionId)}
-                  probability={probability}
-                  rank={index}
-                />
-              ))}
-            </div>
+            <CardContent>
+              <div className="space-y-2">
+                {sortedPredictions.map(([optionId, probability], index) => (
+                  <PredictionBar
+                    key={optionId}
+                    name={getOptionName(optionId)}
+                    probability={probability}
+                    rank={index}
+                  />
+                ))}
+              </div>
+            </CardContent>
 
-            <div className="mt-4 pt-4 border-t border-[var(--card-border)] flex items-center gap-4 text-xs text-[var(--muted)]">
+            <CardFooter className="border-t pt-4 flex items-center gap-4 text-xs text-muted-foreground">
               <span>
                 Council: {prediction.metadata.successfulMembers}/
                 {prediction.metadata.councilSize} members
               </span>
               <span>
-                Completed in {(prediction.metadata.totalDurationMs / 1000).toFixed(1)}s
+                Completed in{" "}
+                {(prediction.metadata.totalDurationMs / 1000).toFixed(1)}s
               </span>
-            </div>
-          </div>
+            </CardFooter>
+          </Card>
 
           <CouncilBreakdown prediction={prediction} options={market.options} />
         </>
       ) : (
-        <div className="bg-[var(--card-bg)] border border-[var(--card-border)] rounded-lg p-6 text-center">
-          <p className="text-[var(--muted)]">No predictions yet for this market.</p>
-          <p className="text-sm text-[var(--muted)] mt-2">
-            Run{" "}
-            <code className="bg-[var(--background)] px-2 py-1 rounded">
-              npm run council {market.id}
-            </code>{" "}
-            to generate a prediction.
-          </p>
-        </div>
+        <Card>
+          <CardContent className="py-8 text-center">
+            <p className="text-muted-foreground">
+              No predictions yet for this market.
+            </p>
+            <p className="text-sm text-muted-foreground mt-2">
+              Run{" "}
+              <code className="bg-muted px-2 py-1 rounded">
+                npm run council {market.id}
+              </code>{" "}
+              to generate a prediction.
+            </p>
+          </CardContent>
+        </Card>
       )}
     </div>
   );

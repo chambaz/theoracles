@@ -6,14 +6,14 @@ interface PredictionBarProps {
 }
 
 const COLORS = [
-  "#3b82f6", // blue
-  "#f59e0b", // amber
-  "#22c55e", // green
-  "#ef4444", // red
-  "#8b5cf6", // purple
-  "#ec4899", // pink
-  "#06b6d4", // cyan
-  "#84cc16", // lime
+  "bg-blue-500",
+  "bg-amber-500",
+  "bg-green-500",
+  "bg-red-500",
+  "bg-purple-500",
+  "bg-pink-500",
+  "bg-cyan-500",
+  "bg-lime-500",
 ];
 
 export function PredictionBar({
@@ -23,18 +23,15 @@ export function PredictionBar({
   showPercentage = true,
 }: PredictionBarProps) {
   const percentage = probability * 100;
-  const color = COLORS[rank % COLORS.length];
+  const colorClass = COLORS[rank % COLORS.length];
 
   return (
     <div className="flex items-center gap-4 py-2">
       <div className="w-40 truncate text-sm font-medium">{name}</div>
-      <div className="flex-1 h-8 bg-[var(--card-border)] rounded-md overflow-hidden relative">
+      <div className="flex-1 h-8 bg-muted rounded-md overflow-hidden relative">
         <div
-          className="h-full transition-all duration-500 ease-out"
-          style={{
-            width: `${Math.max(percentage, 1)}%`,
-            backgroundColor: color,
-          }}
+          className={`h-full transition-all duration-500 ease-out ${colorClass}`}
+          style={{ width: `${Math.max(percentage, 1)}%` }}
         />
         {showPercentage && (
           <span className="absolute inset-0 flex items-center px-3 text-sm font-semibold">

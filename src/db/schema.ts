@@ -1,4 +1,11 @@
-import { pgTable, text, timestamp, jsonb, index } from "drizzle-orm/pg-core";
+import {
+  pgTable,
+  text,
+  timestamp,
+  jsonb,
+  index,
+  serial,
+} from "drizzle-orm/pg-core";
 import type { MarketOption, ModelPrediction } from "@/types";
 
 export const markets = pgTable("markets", {
@@ -52,3 +59,11 @@ export const predictions = pgTable(
     ),
   ]
 );
+
+export const waitlist = pgTable("waitlist", {
+  id: serial("id").primaryKey(),
+  email: text("email").notNull().unique(),
+  createdAt: timestamp("created_at", { withTimezone: true })
+    .notNull()
+    .defaultNow(),
+});
