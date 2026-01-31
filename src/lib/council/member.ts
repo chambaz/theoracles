@@ -79,20 +79,19 @@ export async function runCouncilMember(
     },
   });
 
-  const prompt = `${buildPredictionPrompt(market)}
-
-After completing your research, respond with a JSON object in this exact format:
-{
-  "predictions": {
-    "<option_id>": <probability>,
-    ...
-  },
+  const jsonFormat = `{
+  "predictions": { "<option_id>": <probability>, ... },
   "reasoning": "<your detailed analysis>",
   "sources": ["<url1>", "<url2>", ...],
   "confidence": <0-1>
-}
+}`;
 
-Make sure probabilities sum to 1.0 and use the exact option IDs from the market.`;
+  const prompt = `${buildPredictionPrompt(market)}
+
+After completing your research, you MUST respond with ONLY a JSON object in this exact format (no other text before or after):
+${jsonFormat}
+
+Make sure probabilities sum to 1.0 and use the exact option IDs from the market. Your entire response must be valid JSON — no explanation, no markdown, no text outside the JSON.`;
 
   const result = await generateText({
     model,
@@ -102,18 +101,45 @@ Make sure probabilities sum to 1.0 and use the exact option IDs from the market.
     stopWhen: stepCountIs(10),
   });
 
-  // Parse the final response
-  const jsonText = extractJson(result.text);
+  // Parse the final response, with retry if initial parse fails
   let parsed: z.infer<typeof PredictionOutputSchema>;
+  const jsonText = extractJson(result.text);
 
   try {
     const rawParsed = JSON.parse(jsonText);
     parsed = PredictionOutputSchema.parse(rawParsed);
-  } catch (error) {
-    console.error(`[${member.name}] Failed to parse response:`, result.text);
-    throw new Error(
-      `Failed to parse prediction from ${member.name}: ${error instanceof Error ? error.message : "Unknown error"}`
+  } catch {
+    // Retry: ask the model to convert its response to JSON
+    console.warn(
+      `[${member.name}] Initial parse failed, retrying with JSON-only prompt...`
     );
+
+    const retryResult = await generateText({
+      model,
+      system:
+        "You are a JSON formatter. Convert the analysis below into the exact JSON format requested. Output ONLY valid JSON, nothing else.",
+      prompt: `Convert this prediction analysis into the following JSON format:
+${jsonFormat}
+
+The option IDs are: ${market.options.map((o) => o.id).join(", ")}
+
+Analysis to convert:
+${result.text}`,
+    });
+
+    const retryJson = extractJson(retryResult.text);
+    try {
+      const rawParsed = JSON.parse(retryJson);
+      parsed = PredictionOutputSchema.parse(rawParsed);
+    } catch (retryError) {
+      console.error(
+        `[${member.name}] Retry also failed:`,
+        retryResult.text.slice(0, 200)
+      );
+      throw new Error(
+        `Failed to parse prediction from ${member.name}: ${retryError instanceof Error ? retryError.message : "Unknown error"}`
+      );
+    }
   }
 
   const normalizedPredictions = normalizeProbabilities(parsed.predictions);
