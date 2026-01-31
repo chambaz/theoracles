@@ -13,9 +13,9 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "The Oracles | AI Prediction Market",
+  title: "The Oracles - AI Council Prediction Markets",
   description:
-    "An LLM-powered prediction market where a council of AI models researches and predicts outcomes.",
+    "AI council prediction markets for current events, powered by advanced models.",
 };
 
 export default function RootLayout({
@@ -25,7 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} antialiased min-h-screen pb-4`}>
+      <body className={`${inter.variable} antialiased min-h-screen`}>
         <ThemeProvider>
           <header className="border-b border-border bg-card">
             <div className="max-w-8xl mx-auto px-4 py-4 flex items-center justify-between gap-5">
@@ -39,6 +39,25 @@ export default function RootLayout({
                 </span>
               </Link>
               <div className="flex items-center gap-2 ml-auto">
+                <Button variant="ghost" size="icon" asChild>
+                  <a
+                    href="https://x.com/chambaz"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="X (Twitter)"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      className="size-4"
+                    >
+                      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                    </svg>
+                  </a>
+                </Button>
                 <Button variant="ghost" size="icon" asChild>
                   <a
                     href="https://github.com/chambaz/theoracles"
@@ -58,6 +77,7 @@ export default function RootLayout({
                     </svg>
                   </a>
                 </Button>
+
                 <ThemeToggle />
               </div>
               <div>
@@ -66,6 +86,17 @@ export default function RootLayout({
             </div>
           </header>
           <main className="max-w-8xl mx-auto px-4 py-8">{children}</main>
+          <footer className="max-w-8xl mx-auto px-4 pb-8 text-center text-sm text-muted-foreground">
+            Built by{" "}
+            <a
+              href="https://x.com/chambaz"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline underline-offset-4 hover:text-foreground transition-colors"
+            >
+              @chambaz
+            </a>
+          </footer>
         </ThemeProvider>
       </body>
     </html>
