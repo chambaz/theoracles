@@ -5,7 +5,13 @@ import { getLatestPrediction } from "@/lib/storage/predictions";
 import { PredictionBar, CouncilBreakdown } from "@/components";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from "@/components/ui/card";
+import { sortPredictions } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
 
@@ -24,9 +30,7 @@ export default async function MarketPage({ params }: PageProps) {
   const prediction = await getLatestPrediction(id);
 
   const sortedPredictions = prediction
-    ? Object.entries(prediction.aggregatedPredictions).sort(
-        ([, a], [, b]) => b - a
-      )
+    ? sortPredictions(Object.entries(prediction.aggregatedPredictions))
     : [];
 
   const getOptionName = (optionId: string) => {
@@ -45,7 +49,7 @@ export default async function MarketPage({ params }: PageProps) {
   };
 
   return (
-    <div>
+    <div className="pb-4">
       <Button variant="ghost" size="sm" asChild className="mb-6">
         <Link href="/">
           <span>&larr;</span> Back to markets

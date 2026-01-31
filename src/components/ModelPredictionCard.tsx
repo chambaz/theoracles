@@ -9,8 +9,8 @@ import {
   CardFooter,
   CardHeader,
 } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { ChevronDown, ChevronUp } from "lucide-react";
+import { sortPredictions } from "@/lib/utils";
 
 interface ModelPredictionCardProps {
   prediction: ModelPrediction;
@@ -23,8 +23,8 @@ export function ModelPredictionCard({
 }: ModelPredictionCardProps) {
   const [showReasoning, setShowReasoning] = useState(false);
 
-  const sortedPredictions = Object.entries(prediction.predictions).sort(
-    ([, a], [, b]) => b - a,
+  const sortedPredictions = sortPredictions(
+    Object.entries(prediction.predictions),
   );
 
   const getOptionName = (optionId: string) => {
@@ -37,8 +37,11 @@ export function ModelPredictionCard({
         <div className="flex items-center justify-between">
           <h3 className="font-semibold">{prediction.modelName}</h3>
           <div className="flex items-center gap-3 text-xs text-muted-foreground">
-            <span>{(prediction.confidence * 100).toFixed(0)}% confident</span>
-            <span>{prediction.searchQueries.length} searches</span>
+            <span>{(prediction.confidence * 100).toFixed(0)}% confidence</span>
+            <span>
+              {prediction.searchQueries.length} web search
+              {prediction.searchQueries.length > 1 && "es"}
+            </span>
             <span>{(prediction.durationMs / 1000).toFixed(1)}s</span>
           </div>
         </div>

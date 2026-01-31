@@ -3,6 +3,7 @@ import type { Market, CouncilPrediction } from "@/types";
 import { PredictionBar } from "./PredictionBar";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { sortPredictions } from "@/lib/utils";
 
 interface MarketCardProps {
   market: Market;
@@ -11,8 +12,7 @@ interface MarketCardProps {
 
 export function MarketCard({ market, prediction }: MarketCardProps) {
   const sortedPredictions = prediction
-    ? Object.entries(prediction.aggregatedPredictions)
-        .sort(([, a], [, b]) => b - a)
+    ? sortPredictions(Object.entries(prediction.aggregatedPredictions))
         .slice(0, 3)
     : [];
 
