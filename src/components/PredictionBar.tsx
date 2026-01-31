@@ -6,14 +6,14 @@ interface PredictionBarProps {
 }
 
 const COLORS = [
-  "bg-blue-500",
-  "bg-amber-500",
-  "bg-green-500",
-  "bg-red-500",
-  "bg-purple-500",
-  "bg-pink-500",
-  "bg-cyan-500",
-  "bg-lime-500",
+  "bg-indigo-400",
+  "bg-teal-400",
+  "bg-rose-400",
+  "bg-amber-400",
+  "bg-violet-400",
+  "bg-sky-400",
+  "bg-fuchsia-400",
+  "bg-emerald-400",
 ];
 
 export function PredictionBar({

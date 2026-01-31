@@ -76,7 +76,7 @@ export function WaitlistDialog() {
 
         {status === "success" ? (
           <div className="text-center py-4">
-            <p className="text-green-500 font-medium mb-1">
+            <p className="text-emerald-400 font-medium mb-1">
               You&apos;re on the list!
             </p>
             <p className="text-sm text-muted-foreground">

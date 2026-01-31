@@ -25,7 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} antialiased min-h-screen`}>
+      <body className={`${inter.variable} antialiased min-h-screen pb-4`}>
         <ThemeProvider>
           <header className="border-b border-border bg-card">
             <div className="max-w-8xl mx-auto px-4 py-4 flex items-center justify-between gap-5">

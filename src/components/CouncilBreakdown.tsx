@@ -20,7 +20,7 @@ export function CouncilBreakdown({
         </div>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2">
+      <div className="grid gap-6 md:grid-cols-2">
         {prediction.memberPredictions.map((memberPred) => (
           <ModelPredictionCard
             key={memberPred.model}
