@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getMarket } from "@/lib/storage/markets";
@@ -17,6 +18,37 @@ export const dynamic = "force-dynamic";
 
 interface PageProps {
   params: Promise<{ id: string }>;
+}
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { id } = await params;
+  const market = await getMarket(id);
+
+  if (!market) {
+    return {};
+  }
+
+  const title = `${market.title} | The Oracles`;
+
+  return {
+    title,
+    openGraph: {
+      title,
+      images: [
+        {
+          url: "/theoracles.png",
+          width: 1536,
+          height: 1024,
+          alt: "The Oracles",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      images: ["/theoracles.png"],
+    },
+  };
 }
 
 export default async function MarketPage({ params }: PageProps) {

@@ -20,15 +20,15 @@ async function getMarketsWithPredictions(): Promise<
   // Popularity order (based on Polymarket volume)
   const popularityOrder = [
     "dem-nominee-2028",
+    "republican-nominee-2028",
     "presidential-election-2028",
     "nba-champion-2026",
-    "us-strikes-iran-2026",
     "fifa-world-cup-2026",
     "best-ai-model-march-2026",
-    "fed-decision-march-2026",
+    "fed-rate-cuts-2026",
     "btc-price-2026",
+    "us-recession-2026",
     "russia-ukraine-ceasefire-2026",
-    "us-acquires-greenland-2026",
     "first-leave-trump-cabinet",
     "openai-ipo-market-cap",
   ];
