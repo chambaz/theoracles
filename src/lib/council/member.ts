@@ -108,6 +108,31 @@ export async function runCouncilMember(
     clearTimeout(researchTimeout);
   }
 
+  // Aggregate research from all steps.
+  // researchResult.text only contains the FINAL step's text, which is often
+  // empty when stepCountIs() triggers after a tool-call step. We need to
+  // collect text from every step plus the raw tool results.
+  const researchText = researchResult.steps
+    .map((step) => step.text)
+    .filter((text) => text.length > 0)
+    .join("\n\n");
+
+  const searchResultsText = researchResult.steps
+    .flatMap((step) => step.toolResults)
+    .map((tr) => JSON.stringify(tr.output))
+    .join("\n\n");
+
+  const fullResearch = [researchText, searchResultsText]
+    .filter((t) => t.length > 0)
+    .join("\n\n---\nRaw search results:\n");
+
+  console.log(
+    `[${member.name}] Phase 1 complete: ${researchResult.steps.length} steps, ` +
+      `researchText=${researchText.length} chars, ` +
+      `searchResults=${searchResultsText.length} chars, ` +
+      `fullResearch=${fullResearch.length} chars`,
+  );
+
   // Phase 2: Generate structured prediction from research
   const optionIds = market.options.map((o) => o.id);
 
@@ -134,7 +159,7 @@ export async function runCouncilMember(
 The option IDs are: ${optionIds.join(", ")}
 
 Research:
-${researchResult.text}`,
+${fullResearch}`,
       maxOutputTokens: 1024,
       abortSignal: predictionController.signal,
     });
