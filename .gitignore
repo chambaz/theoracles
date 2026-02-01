@@ -45,6 +45,9 @@ yarn-error.log*
 .vscode/
 .idea/
 
+# council logs
+*.log
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

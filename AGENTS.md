@@ -29,7 +29,6 @@ npm run seed                   # Seed sample markets to database
 ```bash
 npm run db:push                # Push schema changes to Neon
 npm run db:studio              # Open Drizzle Studio (DB browser)
-npm run db:migrate             # Run one-time JSON → Neon migration
 ```
 
 ### Type Checking

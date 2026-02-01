@@ -1,36 +1,50 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# The Oracles
 
-## Getting Started
+An LLM-powered prediction market where a council of AI models independently research questions via web search and provide probability estimates, aggregated into a consensus prediction.
 
-First, run the development server:
+Inspired by [Karpathy's LLM council idea](https://x.com/kaborafode/status/1886518584568619434) and [Polymarket](https://polymarket.com).
+
+## How It Works
+
+1. A market is defined with a question and a set of possible outcomes
+2. Three AI models (GPT-4.1, Claude Sonnet 4, Grok 3) independently research the question using web search
+3. Each model produces calibrated probability estimates for every outcome
+4. The council's predictions are aggregated into a consensus via mean averaging
+
+## Tech Stack
+
+- **Framework:** Next.js 16, React 19, TypeScript 5
+- **Styling:** Tailwind CSS 4, shadcn/ui
+- **AI:** Vercel AI SDK 6 (OpenAI, Anthropic, xAI), Tavily web search
+- **Database:** Neon (serverless Postgres) + Drizzle ORM
+
+## Setup
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+cp .env.example .env  # Add your API keys
+npm run db:push        # Push schema to Neon
+npm run seed           # Seed markets
+npm run dev            # Start dev server
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Environment Variables
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+OPENAI_API_KEY=sk-...
+ANTHROPIC_API_KEY=sk-ant-...
+XAI_API_KEY=xai-...
+TAVILY_API_KEY=tvly-...
+DATABASE_URL=postgresql://...
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Running the Council
 
-## Learn More
+```bash
+npm run council <market-id>    # Run prediction for a specific market
+npm run council -- --all       # Run predictions for all active markets
+```
 
-To learn more about Next.js, take a look at the following resources:
+## License
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+MIT
