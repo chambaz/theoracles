@@ -80,23 +80,33 @@ const sampleMarkets: Market[] = [
     updatedAt: new Date().toISOString(),
   },
 
-  // ── Geopolitics ─────────────────────────────────────────────────────
   {
-    id: "us-strikes-iran-2026",
-    title: "US strikes Iran by June 30, 2026?",
+    id: "republican-nominee-2028",
+    title: "Republican Presidential Nominee 2028",
     description:
-      "This market resolves to YES if the US initiates a drone, missile, or air strike on Iranian soil or any official Iranian embassy or consulate by June 30, 2026. Intercepted missiles or ground operations do not qualify.",
-    category: "Geopolitics",
+      "This market resolves to the individual who wins and accepts the 2028 nomination of the Republican Party for U.S. president. If no nominee is selected by the end date, resolves to the closest equivalent.",
+    category: "Politics",
     options: [
-      { id: "yes", name: "Yes" },
-      { id: "no", name: "No" },
+      { id: "jd-vance", name: "JD Vance" },
+      { id: "marco-rubio", name: "Marco Rubio" },
+      { id: "donald-trump", name: "Donald Trump" },
+      { id: "ron-desantis", name: "Ron DeSantis" },
+      { id: "donald-trump-jr", name: "Donald Trump Jr." },
+      { id: "tucker-carlson", name: "Tucker Carlson" },
+      { id: "ted-cruz", name: "Ted Cruz" },
+      { id: "glenn-youngkin", name: "Glenn Youngkin" },
+      { id: "vivek-ramaswamy", name: "Vivek Ramaswamy" },
+      { id: "other", name: "Other" },
     ],
-    resolutionDate: "2026-06-30",
-    source: "https://polymarket.com/event/us-strikes-iran-by",
+    resolutionDate: "2028-11-07",
+    source:
+      "https://polymarket.com/event/republican-presidential-nominee-2028",
     status: "active",
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   },
+
+  // ── Geopolitics ─────────────────────────────────────────────────────
   {
     id: "russia-ukraine-ceasefire-2026",
     title: "Russia x Ukraine ceasefire by end of 2026?",
@@ -113,39 +123,39 @@ const sampleMarkets: Market[] = [
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   },
+  // ── Finance ─────────────────────────────────────────────────────────
   {
-    id: "us-acquires-greenland-2026",
-    title: "Will the US acquire part of Greenland in 2026?",
+    id: "fed-rate-cuts-2026",
+    title: "How many Fed rate cuts in 2026?",
     description:
-      "This market resolves to YES if the United States acquires sovereignty, ownership, or administrative control over any part of Greenland by December 31, 2026. This includes purchase, lease, or treaty-based transfer.",
-    category: "Geopolitics",
+      "This market resolves according to the exact number of 25 basis point rate cuts made by the Fed in 2026, including any cuts made during the December meeting. A 50 bps cut counts as 2 cuts. Emergency rate cuts outside of scheduled FOMC meetings also count.",
+    category: "Finance",
     options: [
-      { id: "yes", name: "Yes" },
-      { id: "no", name: "No" },
+      { id: "0-cuts", name: "0 cuts" },
+      { id: "1-cut", name: "1 cut (25 bps)" },
+      { id: "2-cuts", name: "2 cuts (50 bps)" },
+      { id: "3-cuts", name: "3 cuts (75 bps)" },
+      { id: "4-cuts", name: "4 cuts (100 bps)" },
+      { id: "5-cuts", name: "5+ cuts (125+ bps)" },
     ],
     resolutionDate: "2026-12-31",
-    source:
-      "https://polymarket.com/event/will-the-us-acquire-any-part-of-greenland-in-2026",
+    source: "https://polymarket.com/event/how-many-fed-rate-cuts-in-2026",
     status: "active",
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   },
-
-  // ── Finance ─────────────────────────────────────────────────────────
   {
-    id: "fed-decision-march-2026",
-    title: "Fed decision in March 2026",
+    id: "us-recession-2026",
+    title: "US recession by end of 2026?",
     description:
-      "This market resolves to the change in the upper bound of the target federal funds rate after the FOMC meeting scheduled for March 17-18, 2026. If no statement is released by the end date of the next scheduled meeting, resolves to No change.",
+      "This market resolves to YES if U.S. real GDP declines for two consecutive quarters (Q2 2025 through Q4 2026), or if the NBER publicly announces a recession occurred during 2025-2026 by the time the BEA releases the Q4 2026 advance estimate.",
     category: "Finance",
     options: [
-      { id: "50-bps-decrease", name: "50+ bps decrease" },
-      { id: "25-bps-decrease", name: "25 bps decrease" },
-      { id: "no-change", name: "No change" },
-      { id: "25-bps-increase", name: "25+ bps increase" },
+      { id: "yes", name: "Yes" },
+      { id: "no", name: "No" },
     ],
-    resolutionDate: "2026-03-18",
-    source: "https://polymarket.com/event/fed-decision-in-march-885",
+    resolutionDate: "2027-01-31",
+    source: "https://polymarket.com/event/us-recession-by-end-of-2026",
     status: "active",
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
