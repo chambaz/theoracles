@@ -57,28 +57,6 @@ const sampleMarkets: Market[] = [
     updatedAt: new Date().toISOString(),
   },
   {
-    id: "fed-chair-2026",
-    title: "Who will Trump nominate as Fed Chair?",
-    description:
-      "This market resolves to the person Donald Trump officially nominates to serve as the next Chair of the Federal Reserve. Current Fed Chair Jerome Powell's term expires in May 2026.",
-    category: "Politics",
-    options: [
-      { id: "kevin-warsh", name: "Kevin Warsh" },
-      { id: "rick-rieder", name: "Rick Rieder" },
-      { id: "christopher-waller", name: "Christopher Waller" },
-      { id: "kevin-hassett", name: "Kevin Hassett" },
-      { id: "scott-bessent", name: "Scott Bessent" },
-      { id: "judy-shelton", name: "Judy Shelton" },
-      { id: "michelle-bowman", name: "Michelle Bowman" },
-      { id: "other", name: "Other" },
-    ],
-    resolutionDate: "2026-12-31",
-    source: "https://polymarket.com/event/who-will-trump-nominate-as-fed-chair",
-    status: "active",
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  },
-  {
     id: "first-leave-trump-cabinet",
     title: "Who will be the first to leave the Trump Cabinet?",
     description:
@@ -220,28 +198,50 @@ const sampleMarkets: Market[] = [
     updatedAt: new Date().toISOString(),
   },
 
-  // ── Entertainment ───────────────────────────────────────────────────
+  // ── Sports ───────────────────────────────────────────────────────────
   {
-    id: "oscars-best-picture-2026",
-    title: "Oscars 2026: Best Picture Winner",
+    id: "nba-champion-2026",
+    title: "2026 NBA Champion",
     description:
-      "This market resolves to the film that wins the Academy Award for Best Picture at the 98th Academy Awards ceremony on March 15, 2026.",
-    category: "Entertainment",
+      "This market resolves to the team that wins the 2026 NBA Finals. Resolution source is the NBA.",
+    category: "Sports",
     options: [
-      { id: "one-battle-after-another", name: "One Battle After Another" },
-      { id: "sinners", name: "Sinners" },
-      { id: "hamnet", name: "Hamnet" },
-      { id: "marty-supreme", name: "Marty Supreme" },
-      { id: "frankenstein", name: "Frankenstein" },
-      { id: "sentimental-value", name: "Sentimental Value" },
-      { id: "the-secret-agent", name: "The Secret Agent" },
-      { id: "bugonia", name: "Bugonia" },
-      { id: "train-dreams", name: "Train Dreams" },
-      { id: "f1", name: "F1" },
+      { id: "okc-thunder", name: "Oklahoma City Thunder" },
+      { id: "denver-nuggets", name: "Denver Nuggets" },
+      { id: "detroit-pistons", name: "Detroit Pistons" },
+      { id: "boston-celtics", name: "Boston Celtics" },
+      { id: "new-york-knicks", name: "New York Knicks" },
+      { id: "san-antonio-spurs", name: "San Antonio Spurs" },
+      { id: "houston-rockets", name: "Houston Rockets" },
+      { id: "cleveland-cavaliers", name: "Cleveland Cavaliers" },
+      { id: "minnesota-timberwolves", name: "Minnesota Timberwolves" },
       { id: "other", name: "Other" },
     ],
-    resolutionDate: "2026-03-15",
-    source: "https://polymarket.com/event/oscars-2026-best-picture-winner",
+    resolutionDate: "2026-07-01",
+    source: "https://polymarket.com/event/2026-nba-champion",
+    status: "active",
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  },
+  {
+    id: "fifa-world-cup-2026",
+    title: "2026 FIFA World Cup Winner",
+    description:
+      "This market resolves to the nation that wins the 2026 FIFA World Cup, hosted by the United States, Canada, and Mexico. The final is scheduled for July 19, 2026 at MetLife Stadium in New Jersey.",
+    category: "Sports",
+    options: [
+      { id: "spain", name: "Spain" },
+      { id: "england", name: "England" },
+      { id: "france", name: "France" },
+      { id: "argentina", name: "Argentina" },
+      { id: "brazil", name: "Brazil" },
+      { id: "portugal", name: "Portugal" },
+      { id: "germany", name: "Germany" },
+      { id: "netherlands", name: "Netherlands" },
+      { id: "other", name: "Other" },
+    ],
+    resolutionDate: "2026-07-19",
+    source: "https://polymarket.com/event/2026-fifa-world-cup-winner",
     status: "active",
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
@@ -292,19 +292,29 @@ async function main() {
         createdAt: new Date(market.createdAt),
         updatedAt: new Date(market.updatedAt),
       })
-      .onConflictDoNothing();
+      .onConflictDoUpdate({
+        target: markets.id,
+        set: {
+          title: market.title,
+          description: market.description,
+          category: market.category,
+          options: market.options,
+          resolutionDate: market.resolutionDate
+            ? new Date(market.resolutionDate)
+            : null,
+          source: market.source ?? null,
+          status: market.status,
+          updatedAt: new Date(market.updatedAt),
+        },
+      });
 
     if (result.rowCount && result.rowCount > 0) {
       inserted++;
-      console.log(`  + ${market.id}: ${market.title}`);
-    } else {
-      console.log(`  - ${market.id}: already exists, skipped`);
+      console.log(`  ✓ ${market.id}: ${market.title}`);
     }
   }
 
-  console.log(
-    `\nInserted ${inserted} new markets (${sampleMarkets.length - inserted} skipped).`,
-  );
+  console.log(`\nUpserted ${inserted} markets.`);
 
   // Remove markets (and their predictions) no longer in the seed file
   const seedIds = sampleMarkets.map((m) => m.id);

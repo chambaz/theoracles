@@ -160,12 +160,18 @@ The option IDs are: ${optionIds.join(", ")}
 
 Research:
 ${fullResearch}`,
-      maxOutputTokens: 1024,
+      maxOutputTokens: 2048,
       abortSignal: predictionController.signal,
     });
   } finally {
     clearTimeout(predictionTimeout);
   }
+
+  const lastStep = predictionResult.steps[predictionResult.steps.length - 1];
+  console.log(
+    `[${member.name}] Phase 2 complete: finishReason=${lastStep.finishReason}, ` +
+      `text=${lastStep.text.length} chars`,
+  );
 
   const parsed = predictionResult.output;
 
