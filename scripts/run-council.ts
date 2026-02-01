@@ -58,7 +58,7 @@ async function runForMarket(marketId: string) {
 
   // Save the prediction
   await savePrediction(prediction);
-  console.log(`\nPrediction saved to data/predictions/${market.id}/`);
+  console.log(`\nPrediction saved to database for market: ${market.id}`);
 
   // Display results
   console.log("\n" + "-".repeat(40));

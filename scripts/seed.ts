@@ -1,10 +1,61 @@
 import "dotenv/config";
+import { notInArray } from "drizzle-orm";
 import { db } from "../src/db";
-import { markets } from "../src/db/schema";
+import { markets, predictions } from "../src/db/schema";
 import type { Market } from "../src/types";
 
 const sampleMarkets: Market[] = [
   // ── Politics ────────────────────────────────────────────────────────
+  {
+    id: "dem-nominee-2028",
+    title: "Democratic Presidential Nominee 2028",
+    description:
+      "This market resolves to the individual who wins and accepts the 2028 nomination of the Democratic Party for U.S. president. If no nominee is selected by the end date, resolves to the closest equivalent.",
+    category: "Politics",
+    options: [
+      { id: "gavin-newsom", name: "Gavin Newsom" },
+      { id: "aoc", name: "Alexandria Ocasio-Cortez" },
+      { id: "josh-shapiro", name: "Josh Shapiro" },
+      { id: "kamala-harris", name: "Kamala Harris" },
+      { id: "pete-buttigieg", name: "Pete Buttigieg" },
+      { id: "jon-ossoff", name: "Jon Ossoff" },
+      { id: "andy-beshear", name: "Andy Beshear" },
+      { id: "jb-pritzker", name: "J.B. Pritzker" },
+      { id: "gretchen-whitmer", name: "Gretchen Whitmer" },
+      { id: "other", name: "Other" },
+    ],
+    resolutionDate: "2028-11-07",
+    source:
+      "https://polymarket.com/event/democratic-presidential-nominee-2028",
+    status: "active",
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  },
+  {
+    id: "presidential-election-2028",
+    title: "Presidential Election Winner 2028",
+    description:
+      "This market resolves to the person who wins the 2028 US Presidential Election, based on the Associated Press, Fox News, and NBC all calling the race for the same candidate. If all three haven't called it by inauguration (January 20, 2029), resolves based on who is inaugurated.",
+    category: "Politics",
+    options: [
+      { id: "jd-vance", name: "JD Vance" },
+      { id: "gavin-newsom", name: "Gavin Newsom" },
+      { id: "marco-rubio", name: "Marco Rubio" },
+      { id: "aoc", name: "Alexandria Ocasio-Cortez" },
+      { id: "josh-shapiro", name: "Josh Shapiro" },
+      { id: "kamala-harris", name: "Kamala Harris" },
+      { id: "donald-trump", name: "Donald Trump" },
+      { id: "pete-buttigieg", name: "Pete Buttigieg" },
+      { id: "ron-desantis", name: "Ron DeSantis" },
+      { id: "other", name: "Other" },
+    ],
+    resolutionDate: "2028-11-07",
+    source:
+      "https://polymarket.com/event/presidential-election-winner-2028",
+    status: "active",
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  },
   {
     id: "fed-chair-2026",
     title: "Who will Trump nominate as Fed Chair?",
@@ -46,23 +97,6 @@ const sampleMarkets: Market[] = [
     resolutionDate: "2026-12-31",
     source:
       "https://polymarket.com/event/who-will-be-the-first-to-leave-the-trump-cabinet-828",
-    status: "active",
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  },
-  {
-    id: "us-gov-shutdown-feb-2026",
-    title: "US government shutdown by February 2026?",
-    description:
-      "This market resolves to YES if a lapse in federal government funding (government shutdown) occurs at any point before March 1, 2026. A shutdown is defined as the expiration of funding authority resulting in a lapse in appropriations.",
-    category: "Politics",
-    options: [
-      { id: "yes", name: "Yes" },
-      { id: "no", name: "No" },
-    ],
-    resolutionDate: "2026-03-01",
-    source:
-      "https://polymarket.com/event/will-there-be-another-us-government-shutdown-by-january-31",
     status: "active",
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
@@ -138,45 +172,8 @@ const sampleMarkets: Market[] = [
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   },
-  {
-    id: "largest-company-june-2026",
-    title: "Largest company by market cap end of June 2026?",
-    description:
-      "This market resolves to the publicly traded company with the highest market capitalization at market close on the last trading day of June 2026, based on data from Bloomberg or equivalent.",
-    category: "Finance",
-    options: [
-      { id: "nvidia", name: "NVIDIA" },
-      { id: "apple", name: "Apple" },
-      { id: "microsoft", name: "Microsoft" },
-      { id: "amazon", name: "Amazon" },
-      { id: "alphabet", name: "Alphabet" },
-      { id: "saudi-aramco", name: "Saudi Aramco" },
-      { id: "other", name: "Other" },
-    ],
-    resolutionDate: "2026-06-30",
-    source: "https://polymarket.com/event/largest-company-end-of-june-712",
-    status: "active",
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  },
 
   // ── Technology ──────────────────────────────────────────────────────
-  {
-    id: "openai-ipo-2026",
-    title: "Will OpenAI IPO by December 31, 2026?",
-    description:
-      "This market resolves to YES if OpenAI completes an initial public offering (IPO) and begins trading on a public stock exchange by December 31, 2026.",
-    category: "Technology",
-    options: [
-      { id: "yes", name: "Yes" },
-      { id: "no", name: "No" },
-    ],
-    resolutionDate: "2026-12-31",
-    source: "https://polymarket.com/event/openai-ipo-by",
-    status: "active",
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  },
   {
     id: "openai-ipo-market-cap",
     title: "OpenAI IPO Closing Market Cap",
@@ -198,80 +195,8 @@ const sampleMarkets: Market[] = [
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
   },
-  {
-    id: "tesla-fsd-june-2026",
-    title: "Tesla launches unsupervised FSD by June 30, 2026?",
-    description:
-      "This market resolves to YES if Tesla launches unsupervised full self driving (FSD) — meaning no human driver required — in any US market by June 30, 2026.",
-    category: "Technology",
-    options: [
-      { id: "yes", name: "Yes" },
-      { id: "no", name: "No" },
-    ],
-    resolutionDate: "2026-06-30",
-    source:
-      "https://polymarket.com/event/tesla-launches-unsupervised-full-self-driving-fsd-by",
-    status: "active",
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  },
-  {
-    id: "companies-acquired-2027",
-    title: "Which companies will be acquired before 2027?",
-    description:
-      "Each option resolves independently to YES if credible reporting confirms that any entity enters into an agreement to acquire the listed company by December 31, 2026. Mergers where the listed company is subsumed by another entity also qualify.",
-    category: "Technology",
-    options: [
-      { id: "nebius-group", name: "Nebius Group" },
-      { id: "ubisoft", name: "Ubisoft" },
-      { id: "lovable", name: "Lovable" },
-      { id: "gitlab", name: "GitLab" },
-      { id: "perplexity-ai", name: "Perplexity AI" },
-      { id: "pizza-hut", name: "Pizza Hut" },
-      { id: "viking-therapeutics", name: "Viking Therapeutics" },
-      { id: "snapchat", name: "Snapchat" },
-      { id: "other", name: "Other" },
-    ],
-    resolutionDate: "2026-12-31",
-    source:
-      "https://polymarket.com/event/which-companies-will-be-acquired-before-2027",
-    status: "active",
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  },
-  {
-    id: "anthropic-500b-valuation-2026",
-    title: "Anthropic reaches $500B+ valuation in 2026?",
-    description:
-      "This market resolves to YES if Anthropic achieves a valuation of $500 billion or higher through a funding round, secondary sale, or public listing by December 31, 2026. Valuation must be reported by a credible source such as Bloomberg, Reuters, or the Financial Times.",
-    category: "Technology",
-    options: [
-      { id: "yes", name: "Yes" },
-      { id: "no", name: "No" },
-    ],
-    resolutionDate: "2026-12-31",
-    source: "https://polymarket.com/event/anthropic-500b-valuation-in-2026",
-    status: "active",
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  },
 
   // ── AI ──────────────────────────────────────────────────────────────
-  {
-    id: "ai-video-oscars-2027",
-    title: "Will an AI-generated film win an Oscar by 2027?",
-    description:
-      "This market resolves to YES if a film that is primarily AI-generated (including AI-generated visuals, script, or direction) wins any Academy Award at the 2027 Oscars ceremony or earlier.",
-    category: "AI",
-    options: [
-      { id: "yes", name: "Yes" },
-      { id: "no", name: "No" },
-    ],
-    resolutionDate: "2027-03-01",
-    status: "active",
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  },
   {
     id: "best-ai-model-march-2026",
     title: "Which company has the best AI model end of March?",
@@ -317,28 +242,6 @@ const sampleMarkets: Market[] = [
     ],
     resolutionDate: "2026-03-15",
     source: "https://polymarket.com/event/oscars-2026-best-picture-winner",
-    status: "active",
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  },
-  {
-    id: "grammys-song-of-year-2026",
-    title: "Grammys 2026: Song of the Year",
-    description:
-      "This market resolves to the song that wins Song of the Year at the 68th Annual Grammy Awards ceremony on February 1, 2026.",
-    category: "Entertainment",
-    options: [
-      { id: "golden", name: "Golden - Ejae and Mark Sonnenblick" },
-      { id: "luther", name: "luther - Kendrick Lamar and SZA" },
-      { id: "abracadabra", name: "Abracadabra - Lady Gaga" },
-      { id: "dtmf", name: "DTMF - Bad Bunny" },
-      { id: "wildflower", name: "Wildflower - Billie Eilish" },
-      { id: "atp", name: "ATP. - Rose and Bruno Mars" },
-      { id: "anxiety", name: "Anxiety - Doechii" },
-      { id: "manchild", name: "Manchild - Sabrina Carpenter" },
-    ],
-    resolutionDate: "2026-02-01",
-    source: "https://polymarket.com/event/grammys-song-of-the-year-winner",
     status: "active",
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
@@ -402,6 +305,27 @@ async function main() {
   console.log(
     `\nInserted ${inserted} new markets (${sampleMarkets.length - inserted} skipped).`,
   );
+
+  // Remove markets (and their predictions) no longer in the seed file
+  const seedIds = sampleMarkets.map((m) => m.id);
+  const removedPredictions = await db
+    .delete(predictions)
+    .where(notInArray(predictions.marketId, seedIds));
+
+  if (removedPredictions.rowCount && removedPredictions.rowCount > 0) {
+    console.log(
+      `Removed ${removedPredictions.rowCount} predictions for stale markets.`,
+    );
+  }
+
+  const removedMarkets = await db
+    .delete(markets)
+    .where(notInArray(markets.id, seedIds));
+
+  if (removedMarkets.rowCount && removedMarkets.rowCount > 0) {
+    console.log(`Removed ${removedMarkets.rowCount} stale markets.`);
+  }
+
   console.log("Done!");
 }
 

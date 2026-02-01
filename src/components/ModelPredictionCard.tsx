@@ -86,7 +86,9 @@ export function ModelPredictionCard({
               <div>
                 <p className="text-xs text-muted-foreground mb-1">Sources:</p>
                 <ul className="text-xs space-y-1">
-                  {prediction.sources.map((source, i) => (
+                  {prediction.sources
+                  .filter((s) => s.startsWith("https://"))
+                  .map((source, i) => (
                     <li key={i}>
                       <a
                         href={source}

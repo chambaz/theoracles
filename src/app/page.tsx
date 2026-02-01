@@ -19,24 +19,18 @@ async function getMarketsWithPredictions(): Promise<
 
   // Popularity order (based on Polymarket volume)
   const popularityOrder = [
+    "dem-nominee-2028",
     "fed-chair-2026",
+    "presidential-election-2028",
     "us-strikes-iran-2026",
-    "us-gov-shutdown-feb-2026",
+    "best-ai-model-march-2026",
     "fed-decision-march-2026",
     "oscars-best-picture-2026",
-    "tesla-fsd-june-2026",
-    "btc-price-2026",
-    "companies-acquired-2027",
     "russia-ukraine-ceasefire-2026",
     "us-acquires-greenland-2026",
     "first-leave-trump-cabinet",
-    "best-ai-model-march-2026",
-    "largest-company-june-2026",
     "openai-ipo-market-cap",
-    "openai-ipo-2026",
-    "grammys-song-of-year-2026",
-    "anthropic-500b-valuation-2026",
-    "ai-video-oscars-2027",
+    "btc-price-2026",
   ];
 
   return results.sort((a, b) => {

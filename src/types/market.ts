@@ -16,7 +16,3 @@ export interface Market {
   createdAt: string;
   updatedAt: string;
 }
-
-export interface MarketsData {
-  markets: Market[];
-}

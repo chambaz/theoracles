@@ -1,5 +1,6 @@
 import {
   pgTable,
+  pgEnum,
   text,
   timestamp,
   jsonb,
@@ -8,22 +9,32 @@ import {
 } from "drizzle-orm/pg-core";
 import type { MarketOption, ModelPrediction } from "@/types";
 
-export const markets = pgTable("markets", {
-  id: text("id").primaryKey(),
-  title: text("title").notNull(),
-  description: text("description").notNull(),
-  category: text("category").notNull(),
-  options: jsonb("options").notNull().$type<MarketOption[]>(),
-  resolutionDate: timestamp("resolution_date", { withTimezone: true }),
-  source: text("source"),
-  status: text("status").notNull().default("active"),
-  createdAt: timestamp("created_at", { withTimezone: true })
-    .notNull()
-    .defaultNow(),
-  updatedAt: timestamp("updated_at", { withTimezone: true })
-    .notNull()
-    .defaultNow(),
-});
+export const marketStatusEnum = pgEnum("market_status", [
+  "active",
+  "resolved",
+  "paused",
+]);
+
+export const markets = pgTable(
+  "markets",
+  {
+    id: text("id").primaryKey(),
+    title: text("title").notNull(),
+    description: text("description").notNull(),
+    category: text("category").notNull(),
+    options: jsonb("options").notNull().$type<MarketOption[]>(),
+    resolutionDate: timestamp("resolution_date", { withTimezone: true }),
+    source: text("source"),
+    status: marketStatusEnum("status").notNull().default("active"),
+    createdAt: timestamp("created_at", { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true })
+      .notNull()
+      .defaultNow(),
+  },
+  (table) => [index("idx_markets_status").on(table.status)]
+);
 
 export const predictions = pgTable(
   "predictions",

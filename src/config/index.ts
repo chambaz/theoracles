@@ -1,25 +1,11 @@
-import { z } from "zod";
-
-const envSchema = z.object({
-  OPENAI_API_KEY: z.string().min(1, "OPENAI_API_KEY is required"),
-  ANTHROPIC_API_KEY: z.string().min(1, "ANTHROPIC_API_KEY is required"),
-  TAVILY_API_KEY: z.string().min(1, "TAVILY_API_KEY is required"),
-});
-
-export type Env = z.infer<typeof envSchema>;
-
-export function getEnv(): Env {
-  const result = envSchema.safeParse(process.env);
-
-  if (!result.success) {
-    const missing = result.error.issues.map((i) => i.path.join(".")).join(", ");
-    throw new Error(`Missing environment variables: ${missing}`);
+/**
+ * Validate that a required environment variable is set.
+ * Throws a clear error message if missing.
+ */
+export function requireEnv(name: string): string {
+  const value = process.env[name];
+  if (!value) {
+    throw new Error(`Missing required environment variable: ${name}`);
   }
-
-  return result.data;
+  return value;
 }
-
-export const config = {
-  maxSearchSteps: 10,
-  predictionTimeout: 120000, // 2 minutes per model
-} as const;

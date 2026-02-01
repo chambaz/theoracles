@@ -73,7 +73,7 @@ export default async function MarketPage({ params }: PageProps) {
               })}
             </span>
           )}
-          {market.source && (
+          {market.source && market.source.startsWith("https://") && (
             <a
               href={market.source}
               target="_blank"

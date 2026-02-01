@@ -8,9 +8,9 @@ export interface CouncilMember {
 
 export const COUNCIL_MEMBERS: CouncilMember[] = [
   {
-    id: "gpt-4o",
-    name: "GPT-4o",
-    model: "gpt-4o",
+    id: "gpt-4.1",
+    name: "GPT-4.1",
+    model: "gpt-4.1",
     provider: "openai",
     enabled: true,
   },
