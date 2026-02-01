@@ -18,9 +18,32 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "The Oracles - AI Council Prediction Markets",
+  title: "The Oracles | AI Council Prediction Markets",
   description:
     "AI council prediction markets for current events, powered by advanced models.",
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_BASE_URL ?? "https://theoracles.vercel.app",
+  ),
+  openGraph: {
+    title: "The Oracles | AI Council Prediction Markets",
+    description:
+      "AI council prediction markets for current events, powered by advanced models.",
+    images: [
+      {
+        url: "/theoracles.png",
+        width: 1536,
+        height: 1024,
+        alt: "The Oracles",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "The Oracles | AI Council Prediction Markets",
+    description:
+      "AI council prediction markets for current events, powered by advanced models.",
+    images: ["/theoracles.png"],
+  },
 };
 
 export default function RootLayout({
@@ -30,7 +53,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen`}>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen`}
+      >
         <ThemeProvider>
           <header className="border-b border-border bg-card">
             <div className="max-w-8xl mx-auto px-4 py-4 flex items-center justify-between gap-5">
