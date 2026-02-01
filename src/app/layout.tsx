@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { WaitlistDialog } from "@/components/WaitlistDialog";
+import { MobileNav } from "@/components/MobileNav";
 import { Button } from "@/components/ui/button";
 import "./globals.css";
 
@@ -61,14 +62,17 @@ export default function RootLayout({
             <div className="max-w-8xl mx-auto px-4 py-4 flex items-center justify-between gap-5">
               <Link
                 href="/"
-                className="text-2xl font-bold tracking-tight flex items-center gap-4"
+                className="text-2xl font-bold tracking-tight"
               >
                 The Oracles
-                <span className="font-normal text-base italic">
+                <span className="block text-sm font-normal italic text-muted-foreground md:hidden">
+                  AI Council Prediction Markets
+                </span>
+                <span className="hidden md:inline font-normal text-base italic ml-4">
                   - <span className="ml-2">AI Council Prediction Markets</span>
                 </span>
               </Link>
-              <div className="flex items-center gap-2 ml-auto">
+              <div className="hidden md:flex items-center gap-2 ml-auto">
                 <Button variant="ghost" size="icon" asChild>
                   <a
                     href="https://x.com/chambaz"
@@ -110,8 +114,12 @@ export default function RootLayout({
 
                 <ThemeToggle />
               </div>
-              <div>
+              <div className="hidden md:block">
                 <WaitlistDialog />
+              </div>
+              <div className="md:hidden ml-auto flex items-center gap-2">
+                <WaitlistDialog />
+                <MobileNav />
               </div>
             </div>
           </header>
