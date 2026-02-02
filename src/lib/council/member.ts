@@ -10,6 +10,8 @@ import {
 } from "@/lib/tools/web-search";
 import { buildPredictionPrompt, systemPrompt } from "./prompts";
 
+type PredictionOutput = z.infer<typeof PredictionOutputSchema>;
+
 // Schema for the structured prediction output.
 // Uses an array of { optionId, probability } instead of z.record()
 // because OpenAI's strict JSON schema does not support propertyNames.
@@ -59,6 +61,39 @@ function normalizeProbabilities(
 }
 
 /**
+ * Attempt to manually parse a structured prediction from raw text.
+ * Handles cases where providers (notably Claude) return fields as
+ * serialized JSON strings instead of native types, e.g. predictions
+ * as a JSON string "[{...}]" instead of an actual array.
+ */
+function tryParsePrediction(text: string): PredictionOutput | null {
+  try {
+    // Extract JSON object from text (may be wrapped in markdown fences)
+    const jsonMatch = text.match(/\{[\s\S]*\}/);
+    if (!jsonMatch) return null;
+
+    const raw = JSON.parse(jsonMatch[0]);
+
+    // Fix double-serialized predictions field
+    let predictions = raw.predictions;
+    if (typeof predictions === "string") {
+      predictions = JSON.parse(predictions);
+    }
+
+    if (!Array.isArray(predictions)) return null;
+
+    return {
+      predictions,
+      reasoning: String(raw.reasoning ?? ""),
+      sources: Array.isArray(raw.sources) ? raw.sources : [],
+      confidence: Number(raw.confidence ?? 0.5),
+    };
+  } catch {
+    return null;
+  }
+}
+
+/**
  * Run a single council member to generate a prediction for a market.
  *
  * Two-phase approach for maximum provider compatibility:
@@ -90,7 +125,7 @@ export async function runCouncilMember(
   const researchController = new AbortController();
   const researchTimeout = setTimeout(
     () => researchController.abort(),
-    120000
+    150000
   );
 
   let researchResult;
@@ -173,12 +208,27 @@ ${fullResearch}`,
       `text=${lastStep.text.length} chars`,
   );
 
-  const parsed = predictionResult.output;
+  let parsed: PredictionOutput | null = predictionResult.output;
 
+  // Fallback: if Output.object() validation failed (e.g. Claude returning
+  // predictions as a serialized string), try manual parsing from raw text.
   if (!parsed) {
-    throw new Error(
-      `${member.name} failed to generate a structured prediction`
-    );
+    const rawText = predictionResult.steps
+      .map((step) => step.text)
+      .filter((t) => t.length > 0)
+      .join("\n");
+
+    parsed = tryParsePrediction(rawText);
+
+    if (parsed) {
+      console.log(
+        `[${member.name}] Phase 2 recovered via manual JSON parsing`
+      );
+    } else {
+      throw new Error(
+        `${member.name} failed to generate a structured prediction`
+      );
+    }
   }
 
   // Convert array of { optionId, probability } to Record and validate

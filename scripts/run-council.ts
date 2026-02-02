@@ -1,20 +1,46 @@
 import "dotenv/config";
+import * as fs from "node:fs";
 import { runCouncil } from "../src/lib/council";
 import { getMarket, getActiveMarkets } from "../src/lib/storage/markets";
 import { savePrediction } from "../src/lib/storage/predictions";
+
+function setupLogging() {
+  const timestamp = new Date().toISOString().replace(/[:.]/g, "-").slice(0, 19);
+  const logFile = `council-${timestamp}.log`;
+  const stream = fs.createWriteStream(logFile, { flags: "a" });
+  const origOut = process.stdout.write.bind(process.stdout);
+  const origErr = process.stderr.write.bind(process.stderr);
+
+  process.stdout.write = (chunk: string | Uint8Array, ...rest: unknown[]) => {
+    stream.write(chunk);
+    return origOut(chunk, ...rest as [BufferEncoding, () => void]);
+  };
+
+  process.stderr.write = (chunk: string | Uint8Array, ...rest: unknown[]) => {
+    stream.write(chunk);
+    return origErr(chunk, ...rest as [BufferEncoding, () => void]);
+  };
+
+  console.log(`Logging to ${logFile}\n`);
+}
 
 async function main() {
   const args = process.argv.slice(2);
 
   if (args.length === 0) {
     console.log("Usage:");
-    console.log("  npx tsx scripts/run-council.ts <market-id>");
-    console.log("  npx tsx scripts/run-council.ts --all");
+    console.log("  npm run council <market-id>");
+    console.log("  npm run council -- --all");
+    console.log("  npm run council -- --all --logs");
     console.log("");
-    console.log("Examples:");
-    console.log("  npx tsx scripts/run-council.ts fed-chair-2026");
-    console.log("  npx tsx scripts/run-council.ts --all");
+    console.log("Options:");
+    console.log("  --all   Run predictions for all active markets");
+    console.log("  --logs  Save output to a timestamped log file");
     process.exit(1);
+  }
+
+  if (args.includes("--logs")) {
+    setupLogging();
   }
 
   const runAll = args.includes("--all");
