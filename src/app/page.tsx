@@ -22,15 +22,15 @@ async function getMarketsWithPredictions(): Promise<
     "dem-nominee-2028",
     "republican-nominee-2028",
     "presidential-election-2028",
+    "us-strikes-iran",
     "nba-champion-2026",
     "fifa-world-cup-2026",
-    "best-ai-model-march-2026",
-    "fed-rate-cuts-2026",
+    "btc-price-feb-2026",
     "btc-price-2026",
+    "fed-rate-cuts-2026",
     "us-recession-2026",
     "russia-ukraine-ceasefire-2026",
     "first-leave-trump-cabinet",
-    "openai-ipo-market-cap",
   ];
 
   return results.sort((a, b) => {

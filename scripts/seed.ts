@@ -108,6 +108,24 @@ const sampleMarkets: Market[] = [
 
   // ── Geopolitics ─────────────────────────────────────────────────────
   {
+    id: "us-strikes-iran",
+    title: "US strikes Iran by...?",
+    description:
+      "This market resolves to YES if the US initiates a drone, missile, or air strike on Iranian soil or any official Iranian embassy or consulate by the listed date. Intercepted missiles, ground operations, cyberattacks, or naval actions do not qualify.",
+    category: "Geopolitics",
+    options: [
+      { id: "feb-28", name: "By February 28" },
+      { id: "mar-31", name: "By March 31" },
+      { id: "jun-30", name: "By June 30" },
+      { id: "not-by-jun-30", name: "Not by June 30" },
+    ],
+    resolutionDate: "2026-06-30",
+    source: "https://polymarket.com/event/us-strikes-iran-by",
+    status: "active",
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  },
+  {
     id: "russia-ukraine-ceasefire-2026",
     title: "Russia x Ukraine ceasefire by end of 2026?",
     description:
@@ -156,52 +174,6 @@ const sampleMarkets: Market[] = [
     ],
     resolutionDate: "2027-01-31",
     source: "https://polymarket.com/event/us-recession-by-end-of-2026",
-    status: "active",
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  },
-
-  // ── Technology ──────────────────────────────────────────────────────
-  {
-    id: "openai-ipo-market-cap",
-    title: "OpenAI IPO Closing Market Cap",
-    description:
-      "This market resolves based on OpenAI's market capitalization at the closing price on its first day of trading. If no IPO occurs by December 31, 2026, resolves to No IPO.",
-    category: "Technology",
-    options: [
-      { id: "under-500b", name: "<$500B" },
-      { id: "500b-750b", name: "$500B-$750B" },
-      { id: "750b-1t", name: "$750B-$1T" },
-      { id: "1t-1-25t", name: "$1T-$1.25T" },
-      { id: "1-25t-1-5t", name: "$1.25T-$1.5T" },
-      { id: "over-1-5t", name: "$1.5T+" },
-      { id: "no-ipo", name: "No IPO by Dec 2026" },
-    ],
-    resolutionDate: "2026-12-31",
-    source: "https://polymarket.com/event/openai-ipo-closing-market-cap",
-    status: "active",
-    createdAt: new Date().toISOString(),
-    updatedAt: new Date().toISOString(),
-  },
-
-  // ── AI ──────────────────────────────────────────────────────────────
-  {
-    id: "best-ai-model-march-2026",
-    title: "Which company has the best AI model end of March?",
-    description:
-      "This market resolves to the company whose AI model scores highest on the Chatbot Arena overall leaderboard (lmarena.ai) at market close on March 31, 2026. Only the default leaderboard ranking (without style control) is used.",
-    category: "AI",
-    options: [
-      { id: "google", name: "Google" },
-      { id: "openai", name: "OpenAI" },
-      { id: "anthropic", name: "Anthropic" },
-      { id: "xai", name: "xAI" },
-      { id: "deepseek", name: "DeepSeek" },
-      { id: "other", name: "Other" },
-    ],
-    resolutionDate: "2026-03-31",
-    source:
-      "https://polymarket.com/event/which-company-has-the-best-ai-model-end-of-march-751",
     status: "active",
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),
@@ -257,6 +229,28 @@ const sampleMarkets: Market[] = [
   },
 
   // ── Crypto ──────────────────────────────────────────────────────────
+  {
+    id: "btc-price-feb-2026",
+    title: "What price will Bitcoin hit in February?",
+    description:
+      "Each option resolves independently based on whether any Binance 1-minute candle for BTC/USDT reaches the specified high or low price at any point during February 2026.",
+    category: "Crypto",
+    options: [
+      { id: "up-100k", name: "Hits $100,000" },
+      { id: "up-95k", name: "Hits $95,000" },
+      { id: "up-90k", name: "Hits $90,000" },
+      { id: "up-85k", name: "Hits $85,000" },
+      { id: "down-60k", name: "Drops to $60,000" },
+      { id: "down-55k", name: "Drops to $55,000" },
+      { id: "down-50k", name: "Drops to $50,000" },
+    ],
+    resolutionDate: "2026-03-01",
+    source:
+      "https://polymarket.com/event/what-price-will-bitcoin-hit-in-february-2026",
+    status: "active",
+    createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
+  },
   {
     id: "btc-price-2026",
     title: "What price will Bitcoin hit in 2026?",
