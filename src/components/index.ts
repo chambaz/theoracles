@@ -5,3 +5,4 @@ export { CouncilBreakdown } from "./CouncilBreakdown";
 export { ThemeToggle } from "./ThemeToggle";
 export { ThemeProvider } from "./ThemeProvider";
 export { WaitlistDialog } from "./WaitlistDialog";
+export { LocalTime } from "./LocalTime";

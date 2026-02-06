@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { getMarket } from "@/lib/storage/markets";
 import { getLatestPrediction } from "@/lib/storage/predictions";
-import { PredictionBar, CouncilBreakdown } from "@/components";
+import { PredictionBar, CouncilBreakdown, LocalTime } from "@/components";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -69,17 +69,6 @@ export default async function MarketPage({ params }: PageProps) {
     return market.options.find((o) => o.id === optionId)?.name || optionId;
   };
 
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString("en-US", {
-      weekday: "long",
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-    });
-  };
-
   return (
     <div className="pb-4">
       <Button variant="ghost" size="sm" asChild className="mb-6">
@@ -135,9 +124,10 @@ export default async function MarketPage({ params }: PageProps) {
             <CardHeader>
               <div className="flex items-center justify-between">
                 <h2 className="text-lg font-semibold">Council Prediction</h2>
-                <span className="text-sm text-muted-foreground">
-                  {formatDate(prediction.timestamp)}
-                </span>
+                <LocalTime
+                  timestamp={prediction.timestamp}
+                  className="text-sm text-muted-foreground"
+                />
               </div>
             </CardHeader>
 
