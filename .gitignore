@@ -46,7 +46,7 @@ yarn-error.log*
 .idea/
 
 # council logs
-*.log
+/logs/
 
 # typescript
 *.tsbuildinfo

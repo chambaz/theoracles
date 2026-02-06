@@ -6,7 +6,11 @@ import { savePrediction } from "../src/lib/storage/predictions";
 
 function setupLogging() {
   const timestamp = new Date().toISOString().replace(/[:.]/g, "-").slice(0, 19);
-  const logFile = `council-${timestamp}.log`;
+  const logDir = "logs";
+  if (!fs.existsSync(logDir)) {
+    fs.mkdirSync(logDir);
+  }
+  const logFile = `${logDir}/council-${timestamp}.log`;
   const stream = fs.createWriteStream(logFile, { flags: "a" });
   const origOut = process.stdout.write.bind(process.stdout);
   const origErr = process.stderr.write.bind(process.stderr);
